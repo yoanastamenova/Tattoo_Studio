@@ -1,6 +1,7 @@
 import express from 'express';
 import 'dotenv/config'
 import { AppDataSource } from './database/db';
+import { createUser } from './controllers/users.controller';
 
 const app = express();
 app.use(express.json())
@@ -29,3 +30,7 @@ AppDataSource.initialize()
     .catch(error => {
         console.log(error)
     })
+
+    // USERS CRUD
+
+    app.post('/user/register', createUser)  // to create newUser
