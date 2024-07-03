@@ -1,61 +1,22 @@
+import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import { User } from "../database/models/User";
 
-export const createUser = async (req: Request, res: Response) => {
+export const getAllUsers = async (req: Request, res: Response) => {
     try {
-        //1. Retrive all the information of the request
-        const first_name = req.body.first_name;
-        const last_name = req.body.last_name;
-        const email = req.body.email;
-        const password_hash = req.body.password_hash;
+        //1. Retrive all of the users
+        const users = await User.find()
 
-        //2. Validate the obtained information
-
-        if (!first_name || !last_name) {
-            return res.status(400).json(
-                {
-                    success: false,
-                    message: "First and last name are required fields!"
-                }
-            )
-        }
-
-        if (!email || !password_hash) {
-            return res.status(400).json(
-                {
-                    success: false,
-                    message: "Email and password cannot be empty!"
-                }
-            )
-        }
-
-        // TODO contrasena comprobacion 
-
-        //3. Work with the obtained user information 
-
-        //4. Save the info in out DataBase
-
-        const newUser = await User.create(
-            {
-                first_name: first_name,
-                last_name: last_name,
-                email: email,
-                password_hash: password_hash
-            }
-        ).save();
-
-        //5. Respond to the page
-
-        res.json(
+        //2. Provide a response
+         res.status(200).json(
             {
                 success: true,
-                message: "User was created successfully! You can now log in to the page!",
-                data: newUser
+                message: "Users retrived successfully!",
+                data: users
             }
-        )
-    }
- 
-    catch (error) {
+         )
+
+    } catch (error) {
         res.status(500).json(
             {
                 success: false,

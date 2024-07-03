@@ -1,36 +1,28 @@
 import express from 'express';
 import 'dotenv/config'
 import { AppDataSource } from './database/db';
-import { createUser } from './controllers/users.controller';
+import { deleteUserById, getAllUsers, updateUserById } from './controllers/users.controller';
+import { register } from './controllers/auth.controller';
 
 const app = express();
 app.use(express.json())
 
 const PORT = process.env.port || 4000;
 
-app.get('/healthy', (req, res) => {
-    //    res.send('Server is healthy')
-
-    res.status(200).json(
-        {
-            success: true,
-            message: "Server is healthy"
-        }
-    )
-})
-
-app.listen(PORT, () => {
-    console.log('Server is running.');
-})
-
 AppDataSource.initialize()
-    .then(() => {
-        console.log('Database connected');
+  .then(() => {
+    console.log('Database connected');
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`)
     })
-    .catch(error => {
-        console.log(error)
-    })
+  })
+  .catch(error => {
+    console.log(error)
+  })
 
     // USERS CRUD
 
-    app.post('/user/register', createUser)  // to create newUser
+    app.get('/users/', getAllUsers)      //To show all users in our DB in admin POV
+    app.post('/users/register', register)  // to create newUser
+    app.post('/users/:id', updateUserById)  // to update User finded by ID
+    app.delete('/user/:id', deleteUserById)   //to eliminate User finded by ID
