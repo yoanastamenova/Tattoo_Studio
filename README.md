@@ -46,7 +46,7 @@ Used technologies for the project:
 
 
 ## ER Diagram from SQL
-!['image-db'](./images/sampleDb.png)
+!['image-db'] <img src="./img/Screenshot 2024-07-03 at 20.05.06.png">
 
 ## Local installation option
 1. Clonar the repository from the url
