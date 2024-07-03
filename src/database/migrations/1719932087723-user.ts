@@ -41,7 +41,8 @@ export class User1719932087723 implements MigrationInterface {
                     },
                     {
                         name: "role_id",
-                        type: "int"
+                        type: "int",
+                        default: "user"
                     },
                 ], foreignKeys: [
                     {

@@ -3,6 +3,7 @@ import 'dotenv/config'
 import { AppDataSource } from './database/db';
 import { deleteUserById, getAllUsers, updateUserById } from './controllers/users.controller';
 import { register } from './controllers/auth.controller';
+import { createService, getAllServices } from './controllers/services.controller';
 
 const app = express();
 app.use(express.json())
@@ -23,6 +24,13 @@ AppDataSource.initialize()
     // USERS CRUD
 
     app.get('/users/', getAllUsers)      //To show all users in our DB in admin POV
-    app.post('/users/register', register)  // to create newUser
-    app.post('/users/:id', updateUserById)  // to update User finded by ID
+    app.post('/users/register', register)// to create newUser
+    app.put('/users/:id', updateUserById)  // to update User finded by ID
     app.delete('/user/:id', deleteUserById)   //to eliminate User finded by ID
+
+    // SERVICES CRUD
+
+    app.get('/services', getAllServices)     // to see all the services
+    app.post('/services', createService) //to create a service
+    app.put('/services/:id')
+    app.delete('/services/:id')

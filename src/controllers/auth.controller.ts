@@ -7,6 +7,9 @@ export const register = async (req: Request, res: Response) => {
         //1. Retrive all the information of the request
         const email = req.body.email;
         const password_hash = req.body.password_hash;
+        const role = req.body.role_id
+
+
         // const body = { email, password_hash }
 
         //2. Validate the obtained information
@@ -20,7 +23,7 @@ export const register = async (req: Request, res: Response) => {
             )
         }
 
-        if (password_hash.length < 8 || password_hash > 12) {
+        if(password_hash.length < 8  || password_hash.length > 12) {
             return res.status(400).json(
                 {
                     success: false,
@@ -34,7 +37,7 @@ export const register = async (req: Request, res: Response) => {
 
 
         //3. Work with the obtained user information - in our case encrypt the password
-        const passwordCrypted = bcrypt.hashSync(password_hash, 12)
+        const passwordCrypted = bcrypt.hashSync(password_hash, 10)
 
 
         //4. Save the info in out DataBase
