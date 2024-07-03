@@ -29,6 +29,8 @@ export const createUser = async (req: Request, res: Response) => {
             )
         }
 
+        // TODO contrasena comprobacion 
+
         //3. Work with the obtained user information 
 
         //4. Save the info in out DataBase
@@ -52,7 +54,7 @@ export const createUser = async (req: Request, res: Response) => {
             }
         )
     }
-
+ 
     catch (error) {
         res.status(500).json(
             {

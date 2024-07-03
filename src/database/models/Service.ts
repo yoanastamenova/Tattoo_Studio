@@ -9,5 +9,5 @@ export class Service extends BaseEntity{
     service_name!: string
 
     @Column({name: 'description'})
-    description!: Text
+    description!: string
 }
