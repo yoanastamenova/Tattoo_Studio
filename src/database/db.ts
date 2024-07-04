@@ -1,12 +1,10 @@
 import "reflect-metadata";
 import 'dotenv/config';
 import { DataSource } from "typeorm";
-
-import { Roles1719932122416 } from "./migrations/1719932122416-roles";
-import { User1719932087723 } from "./migrations/1719932087723-user";
-import { Services1719932131775 } from "./migrations/1719932131775-services";
-import { Appointments1719932127529 } from "./migrations/1719932127529-appointments";
-
+import { Role1720102950232 } from "./migrations/1720105172417-Roles";
+import { User1720103322889 } from "./migrations/1720105188747-Users";
+import { Service1720103843371 } from "./migrations/1720105203929-Services";
+import { Appointment1720103974702 } from "./migrations/1720105227415-Appointments";
 
 export const AppDataSource = new DataSource({
 type: "mysql",
@@ -16,7 +14,7 @@ username: process.env.DB_USERNAME,
 password: process.env.DB_PASSWORD,
 database: process.env.DB_DATABASE,
 entities: [`${__dirname}/models/**/*{.ts,.js}`],
-migrations: [Services1719932131775, Roles1719932122416, User1719932087723, Appointments1719932127529],
+migrations: [`${__dirname}/migrations/**/*{.ts,.js}`],
 synchronize: false,
 logging: false,
 })

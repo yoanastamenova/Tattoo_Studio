@@ -1,11 +1,11 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm"
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class Roles1719932122416 implements MigrationInterface {
+export class Service1720103843371 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "roles",
+                name: "services",
                 columns: [
                     {
                         name: "id",
@@ -15,20 +15,23 @@ export class Roles1719932122416 implements MigrationInterface {
                         generationStrategy: "increment"
                     },
                     {
-                        name: "name",
+                        name: "service_name",
                         type: "varchar",
-                        length: "40",
-                        isUnique: true,
+                        length: "255",
                         isNullable: false
                     },
-                ],
+                    {
+                        name: "description",
+                        type: "text"
+                    }
+                ]
             }),
             true
-        );
+        )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("roles")
+        await queryRunner.dropTable('services')
     }
 
 }
