@@ -52,6 +52,6 @@ app.get('/appointments/scheduled')          //Show all my appointments
 // SERVICES CRUD
 
 app.get('/services', getAllServices)     // to see all the services
-app.post('/services', createService) //to create a service
-app.put('/services/:id', isAdmin, updateSerivce)       // to update a service by its ID
-app.delete('/services/:id', isAdmin, deleteService)        // to delete a service by its ID
+app.post('/services', auth, isAdmin, createService) //to create a service
+app.put('/services/:id', auth, isAdmin, updateSerivce)       // to update a service by its ID
+app.delete('/services/:id', auth, isAdmin, deleteService)        // to delete a service by its ID
