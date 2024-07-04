@@ -1,6 +1,7 @@
 import { Request, Response, request } from "express";
 import { User } from "../database/models/User";
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 export const register = async (req: Request, res: Response) => {
     try {
@@ -23,7 +24,7 @@ export const register = async (req: Request, res: Response) => {
             )
         }
 
-        if(password_hash.length < 8  || password_hash.length > 12) {
+        if (password_hash.length < 8 || password_hash.length > 12) {
             return res.status(400).json(
                 {
                     success: false,
@@ -31,7 +32,7 @@ export const register = async (req: Request, res: Response) => {
                 }
             )
         }
-        
+
 
         // TODO email comprobation must be inserted 
 
@@ -74,24 +75,24 @@ export const register = async (req: Request, res: Response) => {
 export const userLogIn = async (req: Request, res: Response) => {
     try {
         // 1. Get the needed user information
-        const {email, password_hash} = req.body
+        const { email, password_hash } = req.body
 
         //2. Make a validation
-        if(!email || !password_hash){
+        if (!email || !password_hash) {
             return res.status(400).json(
                 {
-                success: false,
-                message:"Email or password cannot be empty"
+                    success: false,
+                    message: "Email or password cannot be empty"
                 }
             )
         }
 
         //3. Check if the user exists in our DataBase
         const user = await User.findOne({
-            where: {email: email}
+            where: { email: email }
         })
 
-        if(!user){
+        if (!user) {
             return res.status(400).json(
                 {
                     success: false,
@@ -104,17 +105,33 @@ export const userLogIn = async (req: Request, res: Response) => {
 
         const validPass = bcrypt.compareSync(password_hash, user.password_hash)
 
-        if(!validPass) {
+        if (!validPass) {
             return res.status(400).json({
                 success: false,
                 message: "Email or password are wrong!"
             })
         }
 
+        //5. Token creation
+
+        const token = jwt.sign(
+            {
+                id: user.id,
+                role: user.role_id,
+                email: user.email
+            },
+            process.env.JWT_SECRET as string,
+            {
+                expiresIn: "2h"
+            }
+        )
+        
+
         res.status(200).json(
             {
                 success: true,
-                message: "Welcome, user!"
+                message: "Welcome, user!",
+                token: token
             }
         )
 
@@ -122,7 +139,7 @@ export const userLogIn = async (req: Request, res: Response) => {
         res.status(500).json(
             {
                 success: false,
-                message: "Cannot create user",
+                message: "Cannot login user",
                 error: error
             }
         )
