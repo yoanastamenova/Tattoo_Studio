@@ -5,27 +5,115 @@ import { User } from "../database/models/User";
 export const getAllUsers = async (req: Request, res: Response) => {
     try {
         //1. Retrive all of the users
-        const users = await User.find()
+        const users = await User.find(
+            {
+                select: {
+                    email: true,
+                    created_at: true
+                }
+            }
+        )
 
         //2. Provide a response
-         res.status(200).json(
+        res.json(
             {
                 success: true,
-                message: "Users retrived successfully!",
+                message: "All users retrived successfully!",
                 data: users
             }
-         )
+        )
 
     } catch (error) {
         res.status(500).json(
             {
                 success: false,
-                message: "Cannot create user",
+                message: "Error showing all users",
                 error: error
             }
         )
     }
 }
+
+export const getUserProfile = async (req: Request, res: Response) => {
+    try {
+        //1. get the needed user ID
+        const userId = req.tokenData.id;
+
+        //2. Look for this ID in our DB
+
+        const user = await User.findOne(
+            {
+                where: {
+                    id: userId
+                }
+            }
+        )
+
+        //3. Provide a response
+        res.json(
+            {
+                success: true,
+                message: "Welcome to your profile!",
+                data: user
+            }
+        )
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: "Error opening user profile!"
+            }
+        )
+    }
+}
+
+export const modifyUserProfile = async (req: Request, res: Response) => {
+    try {
+        //1. Get the needed user ID
+        const userId = req.tokenData.id;
+
+        //2. Validate if this user exists
+
+        const user = User.findOne(
+            {
+                where: {
+                    id: userId
+                }
+            }
+        )
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found!"
+            })
+        }
+
+        //3. Insert new data that will be changed and saved into BD
+        // newInfo.whateverWeUpdate = req.body.whateverWeUpdate;
+
+        //4. Save new updated info in our DB
+
+        // const userUpdated = await User.update({
+        //     id: userId 
+        //     },
+        //     newInfo)
+        //     return res.status(200).json({
+        //         success: true,
+        //         message: "User updated successfully",
+        //         data: userUpdated
+        //     })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "User can't be updated",
+            error: error
+        })
+    }
+}
+
+
 
 export const updateUserById = async (req: Request, res: Response) => {
     try {
@@ -52,13 +140,13 @@ export const updateUserById = async (req: Request, res: Response) => {
             }
         )
     } catch (error) {
-      res.status(500).json(
-        {
-            success: false,
-            message: "User cannot be updated! Try again!",
-            error: error
-        }
-      )
+        res.status(500).json(
+            {
+                success: false,
+                message: "User cannot be updated! Try again!",
+                error: error
+            }
+        )
     }
 }
 
@@ -66,29 +154,29 @@ export const deleteUserById = async (req: Request, res: Response) => {
     try {
         //1. Get the id of the user we want to delete
 
-      const userIdToDelete = Number(req.params.id)
+        const userIdToDelete = Number(req.params.id)
 
-      //2. Delete the user from the DataBase
-      const userDeleted = await User.delete(userIdToDelete)
+        //2. Delete the user from the DataBase
+        const userDeleted = await User.delete(userIdToDelete)
 
-      if(!userDeleted.affected) {
-        return res.status(400).json(
+        if (!userDeleted.affected) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: "The ID of the user does not exist!"
+                }
+            )
+        }
+
+        //3. Provide a response
+        res.status(200).json(
             {
-                success: false,
-                message: "The ID of the user does not exist!"
+                success: true,
+                message: "User was deleted successfully!",
+                data: userDeleted
             }
         )
-      }
-
-      //3. Provide a response
-      res.status(200).json(
-        {
-            success: true,
-            message: "User was deleted successfully!",
-            data: userDeleted
-        }
-      )
-    } catch(error){
+    } catch (error) {
         res.status(500).json(
             {
                 success: false,

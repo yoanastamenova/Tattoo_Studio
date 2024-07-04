@@ -104,7 +104,6 @@ export const deleteService = async (req: Request, res: Response) => {
     try {
         //1. Obtain the id of the service we need to delete
         const serviceToBeDeleted = Number(req.params.id)
-        const body = req.body
 
         //2. Eliminate the service from the DB
         const serviceDeleted = await Service.delete(serviceToBeDeleted)
