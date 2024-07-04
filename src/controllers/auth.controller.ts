@@ -73,6 +73,50 @@ export const register = async (req: Request, res: Response) => {
 
 export const userLogIn = async (req: Request, res: Response) => {
     try {
+        // 1. Get the needed user information
+        const {email, password_hash} = req.body
+
+        //2. Make a validation
+        if(!email || !password_hash){
+            return res.status(400).json(
+                {
+                success: false,
+                message:"Email or password cannot be empty"
+                }
+            )
+        }
+
+        //3. Check if the user exists in our DataBase
+        const user = await User.findOne({
+            where: {email: email}
+        })
+
+        if(!user){
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: "Email or password are not valid!"
+                }
+            )
+        }
+
+        //4. If user exists, then we need to check his password
+
+        const validPass = bcrypt.compareSync(password_hash, user.password_hash)
+
+        if(!validPass) {
+            return res.status(400).json({
+                success: false,
+                message: "Email or password are wrong!"
+            })
+        }
+
+        res.status(200).json(
+            {
+                success: true,
+                message: "Welcome, user!"
+            }
+        )
 
     } catch (error) {
         res.status(500).json(
