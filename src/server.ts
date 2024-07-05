@@ -27,8 +27,8 @@ AppDataSource.initialize()
 
 // AUTHENTICATION CRUD
 
-app.post('/register', register)       // to create new user
-app.post('/login', auth, userLogIn)   //to log in to your account 
+app.post('/register', register)       // to create new user  
+app.post('/login', userLogIn)   //to log in to your account   
 
 
 // USERS CRUD
@@ -39,12 +39,12 @@ app.put('/profile/update', auth, modifyUserProfile)             // To modify(upd
 
 
   //additional USER CRUD
-app.put('/users/:id', updateUserById)  // to update User finded by ID
-app.delete('/user/:id/:role', deleteUserById)   //to eliminate User finded by ID
+app.put('/users/:id', auth, isAdmin, updateUserById)  // to update User finded by ID
+app.delete('/user/:id/:role', auth, isAdmin, deleteUserById)   //to eliminate User finded by ID
 
 
 //APPOINTMENTS CRUD
-app.post('/appointments/create')       //Create new appointment
+app.post('/appointments/create', auth)       //Create new appointment
 app.put('/appointments/change')        //Update an appointment
 app.get('/appointments/:id')       //Show an appointment by ID
 app.get('/appointments/scheduled')          //Show all my appointments
