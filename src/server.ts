@@ -27,31 +27,38 @@ AppDataSource.initialize()
 
 // AUTHENTICATION CRUD
 
-app.post('/register', register)       // to create new user  
-app.post('/login', userLogIn)   //to log in to your account   
+app.post('/api/auth/register', register)       // to create new user  - pass to Thunder > body > email + password
+app.post('/api/auth/login', userLogIn)   //to log in to your account   - pass to Thunder > auth > your token hash
 
 
 // USERS CRUD
 
-app.get('/users', auth, isAdmin, getAllUsers)       //To show all users in our DB in admin POV
-app.get('/users/profile',  auth, getUserProfile)             //To see user profile as user POV
-app.put('/profile/update', auth, modifyUserProfile)             // To modify(update) user profile as user POV
+app.get('/api/users', auth, isAdmin, getAllUsers)       //To show all users in our DB in admin POV         - pass to Thunder > auth > your token hash
+
+app.get('/api/users/profile',  auth, getUserProfile)             //To see user profile as user POV          - pass to Thunder > auth > your token hash
+
+app.put('/api/users/profile', auth, modifyUserProfile)             // To modify(update) user profile as user POV    - pass to Thunder > auth > your token hash + body > info to be updated ex. email
+
 
 
   //additional USER CRUD
-app.put('/users/:id', auth, isAdmin, updateUserById)  // to update User finded by ID
-app.delete('/user/:id/:role', auth, isAdmin, deleteUserById)   //to eliminate User finded by ID
+app.put('/api/users/:id', auth, isAdmin, updateUserById)  // to update User finded by ID
+app.delete('/api/user/:id/:role', auth, isAdmin, deleteUserById)   //to eliminate User finded by ID
 
 
 //APPOINTMENTS CRUD
-app.post('/appointments/create', auth)       //Create new appointment
-app.put('/appointments/change')        //Update an appointment
-app.get('/appointments/:id')       //Show an appointment by ID
-app.get('/appointments/scheduled')          //Show all my appointments
+app.post('/api/appointments/create', auth)       //Create new appointment           - pass to Thunder > auth > your token hash
+
+app.put('/api/appointments/change', auth)        //Update an appointment           - pass to Thunder > auth > your token hash
+
+app.get('/appointments/:id', auth)       //Show an appointment by ID                - pass to Thunder > auth > your token hash
+
+app.get('/appointments/scheduled', auth)          //Show all my appointments        - pass to Thunder > auth > your token hash
+
 
 // SERVICES CRUD
 
-app.get('/services', getAllServices)     // to see all the services
+app.get('/api/services', getAllServices)     // to see all the services
 app.post('/services', auth, isAdmin, createService) //to create a service
 app.put('/services/:id', auth, isAdmin, updateSerivce)       // to update a service by its ID
 app.delete('/services/:id', auth, isAdmin, deleteService)        // to delete a service by its ID
