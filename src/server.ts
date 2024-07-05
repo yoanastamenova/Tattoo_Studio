@@ -6,6 +6,7 @@ import { register, userLogIn } from './controllers/auth.controller';
 import { createService, deleteService, getAllServices, updateSerivce } from './controllers/services.controller';
 import { auth } from './middlewares/auth';
 import { isAdmin } from './middlewares/isAdmin';
+import { createAppointment, deleteAppointment, findAppointmendById, showMyAppointments, updateAppointment } from './controllers/appointments.controller';
 
 const app = express();
 app.use(express.json())
@@ -47,15 +48,15 @@ app.delete('/api/user/:id/:role', auth, isAdmin, deleteUserById)   //to eliminat
 
 
 //APPOINTMENTS CRUD
-app.post('/api/appointments/create', auth)       //Create new appointment           - pass to Thunder > auth > your token hash
+app.post('/api/appointments/create', auth, createAppointment)       //Create new appointment           - pass to Thunder > auth > your token hash
 
-app.put('/api/appointments/change', auth)        //Update an appointment           - pass to Thunder > auth > your token hash
+app.put('/api/appointments/change', auth, updateAppointment)        //Update an appointment           - pass to Thunder > auth > your token hash
 
-app.get('/appointments/:id', auth)       //Show an appointment by ID                - pass to Thunder > auth > your token hash
+app.get('/appointments/:id', auth, findAppointmendById)       //Show an appointment by ID                - pass to Thunder > auth > your token hash
 
-app.get('/appointments/scheduled', auth)          //Show all my appointments        - pass to Thunder > auth > your token hash
+app.get('/appointments/scheduled', auth, showMyAppointments)          //Show all my appointments        - pass to Thunder > auth > your token hash
 
-
+app.delete('/api/appointments/delte', auth, deleteAppointment)      //to delete selected appoitnment
 // SERVICES CRUD
 
 app.get('/api/services', getAllServices)     // to see all the services

@@ -75,18 +75,18 @@ export const updateSerivce = async (req: Request, res: Response) => {
         const body = req.body
         
         // 2. Update the info of the service
-        const authorUpdated = await Service.update(
+        const serviceUpdated = await Service.update(
           {
             id: parseInt(serviceIdToUpdate)
           },
           body
         )
-        // 5. Responder
+        // 4. Responder
         res.status(200).json(
           {
             success: true,
             message: "Service was updated successfully",
-            data: authorUpdated
+            data: serviceUpdated
           }
         )
     } catch (error) {

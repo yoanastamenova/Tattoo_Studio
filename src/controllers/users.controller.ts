@@ -72,6 +72,7 @@ export const modifyUserProfile = async (req: Request, res: Response) => {
     try {
         //1. Get the needed user ID
         const userId = req.tokenData.id;
+        const body = req.body;
 
         //2. Validate if this user exists
 
@@ -90,20 +91,22 @@ export const modifyUserProfile = async (req: Request, res: Response) => {
             })
         }
 
-        //3. Insert new data that will be changed and saved into BD
-        // newInfo.whateverWeUpdate = req.body.whateverWeUpdate;
+        // 3. Insert new data that will be changed and saved into BD
+         const updateBody = await User.update(
+            {
+                id: userId 
+            },
+            body
+         )
 
-        //4. Save new updated info in our DB
+        // 4. Confirmation to web page 
 
-        // const userUpdated = await User.update({
-        //     id: userId 
-        //     },
-        //     newInfo)
-        //     return res.status(200).json({
-        //         success: true,
-        //         message: "User updated successfully",
-        //         data: userUpdated
-        //     })
+        return res.status(200).json({
+            success: true,
+            message: "User updated successfully",
+            data: updateBody
+        })
+
     } catch (error) {
         res.status(500).json({
             success: false,
