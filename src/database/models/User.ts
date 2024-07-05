@@ -3,7 +3,7 @@ import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm"
 @Entity("users")
 export class User extends BaseEntity{
     @PrimaryGeneratedColumn()
-    id!: Number
+    id!: number
 
     @Column({ name: 'first_name'})
     first_name!: string
@@ -18,7 +18,7 @@ export class User extends BaseEntity{
     password_hash!: string
 
     @Column({name: 'role_id'})
-    role_id!: Number
+    role_id!: number
 
     @Column({name: "created_at"})
     created_at!: Date

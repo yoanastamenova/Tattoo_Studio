@@ -42,6 +42,10 @@ export const getUserProfile = async (req: Request, res: Response) => {
 
         const user = await User.findOne(
             {
+                select: {
+                   email: true,
+                   created_at: true,
+                },
                 where: {
                     id: userId
                 }
@@ -116,9 +120,49 @@ export const modifyUserProfile = async (req: Request, res: Response) => {
 }
 
 
-//////// EXTRA 
+//////// EXTRA CRUD
 
-export const updateUserById = async (req: Request, res: Response) => {
+export const getUserByEmail = async (req: Request, res: Response) => {
+    try {
+        //1. get the needed user ID
+        const userId = req.tokenData.id;
+        const userEmail = req.body.email;
+
+        //2. Look for this ID in our DB
+
+        const user = await User.findOne(
+            {
+                select: {
+                   email: true,
+                   created_at: true,
+                },
+                where: {
+                    id: userId,
+                    email: userEmail
+                }
+            }
+        )
+
+        //3. Provide a response
+        res.json(
+            {
+                success: true,
+                message: "User with selected email retrived successfulyy!",
+                data: user
+            }
+        )
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: "Error opening selected user!"
+            }
+        )
+    }
+}
+
+export const changeUserRole = async (req: Request, res: Response) => {
     try {
         //1. Retrive the id for the user which we want to update
         const userIdToUpdate = req.params.userIdToUpdate

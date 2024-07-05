@@ -69,68 +69,70 @@ export const getAllServices = async (req: Request, res: Response) => {
 }
 
 export const updateSerivce = async (req: Request, res: Response) => {
-    try {
-        // 1. Get the id of the service
-        const serviceIdToUpdate = req.params.id
-        const body = req.body
-        
-        // 2. Update the info of the service
-        const serviceUpdated = await Service.update(
-          {
-            id: parseInt(serviceIdToUpdate)
-          },
-          body
-        )
-        // 4. Responder
-        res.status(200).json(
-          {
-            success: true,
-            message: "Service was updated successfully",
-            data: serviceUpdated
-          }
-        )
-    } catch (error) {
-      res.status(500).json(
-        {
-          success: false,
-          message: "Service cannot be updated",
-          error: error
+        try {
+            const serviceId = req.body.id
+    
+            const service = await Service.findOneBy({
+                id: parseInt(serviceId)
+            })
+    
+            if (!service) {
+                return res.status(404).json({
+                    success: false,
+                    message: "Service not found"
+                })
+            }
+    
+            const updatedservice = await Service.update({
+                id: parseInt(serviceId)
+                },
+                req.body
+            )
+    
+            return res.status(200).json({
+                success: true,
+                message: "Service updated successfully",
+                data: updatedservice
+            })
+        } catch (error) {
+            return res.status(500).json({
+                success: false,
+                message: "Service can't be updated",
+                error: error
+            })
         }
-      )
     }
-  }
-  
+
 export const deleteService = async (req: Request, res: Response) => {
     try {
-        //1. Obtain the id of the service we need to delete
-        const serviceToBeDeleted = Number(req.params.id)
+        const serviceId = req.body.id
 
-        //2. Eliminate the service from the DB
-        const serviceDeleted = await Service.delete(serviceToBeDeleted)
+        const service = await Service.findOneBy({
+            id: parseInt(serviceId)
+        })
 
-        if(!serviceDeleted.affected) {
-            return res.status(404).json(
-              {
+        if (!service) {
+            return res.status(404).json({
                 success: false,
-                message: "Service does not exist"
-              }
-            )
-          }
+                message: "Service not found"
+            })
+        }
 
-        //3. Respond to the user 
+        const updatedservice = await Service.delete({
+            id: parseInt(serviceId)
+            }
+        )
+
         return res.status(200).json({
             success: true,
             message: "Service deleted successfully",
-            data: serviceDeleted
+            data: updatedservice
         })
-
-    } catch(error){
-        res.status(500).json(
-            {
-                success: false,
-                message: "Error deleting service! Please, try again!",
-                error: error
-            }
-        )
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Service can't be deleted",
+            error: error
+        })
     }
 }

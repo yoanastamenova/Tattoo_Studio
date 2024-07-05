@@ -4,7 +4,7 @@ import { Appointment } from "../database/models/Appointment";
 export const createAppointment = async (req: Request, res: Response) => {
     try {
         //1. Get the needed information
-        const appDate = req.body.appDate;
+        const appDate = req.body.appointment_date;
         const userID = req.tokenData.id;
         const serviceID = req.body.service_id;
 
@@ -50,13 +50,13 @@ export const createAppointment = async (req: Request, res: Response) => {
 
 export const updateAppointment = async (req: Request, res: Response) => {
     try {
-        //1. Get the ID of the appointment and user
+        //1. Get the ID of the appointment we want to update
         const userID = req.tokenData.id;
         const appointmentID = req.params.id;
-        const newAppInfo = req.body;
+        const body = req.body;
 
         //2. Verify the appID
-        const findApp = await Appointment.findOne(
+        const appointment = Appointment.findOne(
             {
                 where: {
                     id: parseInt(appointmentID)
@@ -64,7 +64,7 @@ export const updateAppointment = async (req: Request, res: Response) => {
             }
         )
 
-        if (!findApp) {
+        if (!appointment) {
             return res.status(404).json(
                 {
                     success: false,
@@ -79,7 +79,7 @@ export const updateAppointment = async (req: Request, res: Response) => {
             {
                 id: parseInt(req.params.id)
             },
-            newAppInfo
+            body
         )
 
         //4. Response provide
@@ -106,7 +106,7 @@ export const updateAppointment = async (req: Request, res: Response) => {
 export const findAppointmendById = async (req: Request, res: Response) => {
     try {
         //1. Find the ID of the appointment
-        const appId = req.params.id;
+        const appId = req.body.id;
 
         //2. Search app by ID in our database
         const appointment = await Appointment.findOne(
@@ -116,6 +116,15 @@ export const findAppointmendById = async (req: Request, res: Response) => {
                 }
             }
         )
+
+        if(!appId){
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: "Appointment not found!"
+                }
+            )
+        }
 
         //3. Provide response 
         res.json(
@@ -141,25 +150,16 @@ export const findAppointmendById = async (req: Request, res: Response) => {
 export const showMyAppointments = async (req: Request, res: Response) => {
     try {
         //1. Get user ID 
-        const userID = req.params.id;
+        const userID = req.tokenData.id;
 
         //2. Search app by this user ID in our database
         const appointment = await Appointment.find(
             {
                 where: {
-                    id: parseInt(userID)
+                        id: userID
                 }
             }
         )
-
-        if(!userID) {
-            return res.status(400).json(
-                {
-                    success: false,
-                    message: "Cannot find appointment"
-                }
-            )
-        }
 
         //3. Provide response 
         res.json(
