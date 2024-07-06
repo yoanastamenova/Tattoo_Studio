@@ -148,39 +148,42 @@ export const findAppointmendById = async (req: Request, res: Response) => {
 
 export const showMyAppointments = async (req: Request, res: Response) => {
     try {
-        //1. Get user ID 
-        const userID = req.tokenData.id;
+        const userId = req.tokenData.id
 
-        //2. Search app by this user ID in our database
         const appointment = await Appointment.find(
             {
-                where: {
-                        id: userID
-                }
+                where:
+                {
+                    user:
+                    {
+                        id: userId
+                    }
+                },
+                relations: ["service"]
             }
-        )
 
-        //3. Provide response 
-        res.json(
+        );
+        console.log(appointment); // Muestra la información del servicio
+
+        res.status(200).json(
             {
                 success: true,
-                message: "Appointments retrived successfully!",
+                message: "user's appointments: ",
                 data: appointment
             }
         )
 
-        
     } catch (error) {
         res.status(500).json(
             {
-                success: false,
-                message: "Error showing profile appointments!",
+                susscess: false,
+                message: "user's appointment can't be retrieved",
                 error: error
             }
         )
     }
+};
 
-}
 
 export const deleteAppointment = async (req: Request, res: Response) => {
     try {
