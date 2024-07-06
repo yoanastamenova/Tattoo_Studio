@@ -51,12 +51,11 @@ export const createAppointment = async (req: Request, res: Response) => {
 export const updateAppointment = async (req: Request, res: Response) => {
     try {
         //1. Get the ID of the appointment we want to update
-        const userID = req.tokenData.id;
-        const appointmentID = req.params.id;
+        const appointmentID = req.body.id;
         const body = req.body;
 
         //2. Verify the appID
-        const appointment = Appointment.findOne(
+        const appointment = await Appointment.findOne(
             {
                 where: {
                     id: parseInt(appointmentID)
@@ -77,7 +76,7 @@ export const updateAppointment = async (req: Request, res: Response) => {
 
         const updateApp = await Appointment.update(
             {
-                id: parseInt(req.params.id)
+                id: parseInt(appointmentID)
             },
             body
         )

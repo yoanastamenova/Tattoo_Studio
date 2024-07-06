@@ -147,7 +147,7 @@ export const getUserByEmail = async (req: Request, res: Response) => {
         res.json(
             {
                 success: true,
-                message: "User with selected email retrived successfulyy!",
+                message: "User with selected email retrived successfuly!",
                 data: user
             }
         )

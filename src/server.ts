@@ -35,9 +35,7 @@ app.post('/api/auth/login', userLogIn)   //to log in to your account   - pass to
 // USERS CRUD
 
 app.get('/api/users', auth, isAdmin, getAllUsers)       //To show all users in our DB in admin POV         - pass to Thunder > auth > your token hash
-
 app.get('/api/users/profile',  auth, getUserProfile)             //To see user profile as user POV          - pass to Thunder > auth > your token hash
-
 app.put('/api/users/profile', auth, modifyUserProfile)             // To modify(update) user profile as user POV    - pass to Thunder > auth > your token hash + body > info to be updated ex. email
 
 
@@ -48,8 +46,9 @@ app.put('/api/user/:id/:role', auth, isAdmin, changeUserRole)  // to change User
 
 
 //APPOINTMENTS CRUD
+
 app.post('/api/appointments/create', auth, createAppointment)       //Create new appointment           - pass to Thunder > auth > your token hash
-app.put('/api/appointments/change', auth, updateAppointment)    //**TO BE CHECKED */      //Update an appointment           - pass to Thunder > auth > your token hash
+app.put('/api/appointments/change', auth, updateAppointment)      //Update an appointment           - pass to Thunder > auth > your token hash
 app.get('/api/appointments/:id', auth, findAppointmendById)       //Show an appointment by ID                - pass to Thunder > auth > your token hash
 app.get('/api/appointments/scheduled', auth, showMyAppointments)  //**TO BE CHECKED */        //Show all my appointments        - pass to Thunder > auth > your token hash
 
