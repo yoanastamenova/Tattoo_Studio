@@ -7,6 +7,7 @@ import { createService, deleteService, getAllServices, updateSerivce } from './c
 import { auth } from './middlewares/auth';
 import { isAdmin } from './middlewares/isAdmin';
 import { createAppointment, deleteAppointment, findAppointmendById, showMyAppointments, updateAppointment } from './controllers/appointments.controller';
+import { createRole, getRoles, updateRole } from './controllers/roles.controller';
 
 const app = express();
 app.use(express.json())
@@ -23,8 +24,6 @@ AppDataSource.initialize()
     .catch(error => {
         console.log(error)
     })
-
-
 
 // AUTHENTICATION CRUD
 
@@ -61,3 +60,11 @@ app.get('/api/services', getAllServices)     // to see all the services
 app.post('/api/services', auth, isAdmin, createService)             //to create a service
 app.put('/api/services/:id', auth, isAdmin, updateSerivce)          // to update a service by its ID
 app.delete('/api/services/:id', auth, isAdmin, deleteService)        // to delete a service by its ID
+
+
+// ROLES CRUD
+
+app.get('/api/roles', auth, isAdmin, getRoles)      // to see all roles
+app.post('/api/roles/create', auth, isAdmin, createRole)      //to make new role
+app.put('/api/roles/update/:id', auth, isAdmin, updateRole)      //to update role by its ID
+app.delete('/api/roles/delete', auth, isAdmin)              //to delete a role by its ID

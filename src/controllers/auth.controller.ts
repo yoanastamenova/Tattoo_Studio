@@ -8,8 +8,6 @@ export const register = async (req: Request, res: Response) => {
         //1. Retrive all the information of the request
         const email = req.body.email;
         const password_hash = req.body.password_hash;
-        const role = req.body.role_id
-
 
         // const body = { email, password_hash }
 
@@ -46,7 +44,8 @@ export const register = async (req: Request, res: Response) => {
         const newUser = await User.create(
             {
                 email: email,
-                password_hash: passwordCrypted
+                password_hash: passwordCrypted,
+                role: { id: 1}
             }
         ).save();
 
@@ -89,7 +88,15 @@ export const userLogIn = async (req: Request, res: Response) => {
 
         //3. Check if the user exists in our DataBase
         const user = await User.findOne({
-            where: { email: email }
+            where: { email: email },
+            relations: {
+                role: true
+            },
+            select: {
+                id: true,
+                email: true,
+                role: {id: true, name: true}
+            }
         })
 
         if (!user) {
