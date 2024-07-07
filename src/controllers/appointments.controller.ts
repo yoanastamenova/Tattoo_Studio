@@ -106,13 +106,16 @@ export const findAppointmendById = async (req: Request, res: Response) => {
     try {
         //1. Find the ID of the appointment
         const appId = req.body.id;
+        const userID = req.tokenData.id;
 
         //2. Search app by ID in our database
         const appointment = await Appointment.findOne(
             {
                 where: {
+                    user: {id: userID},
                     id: parseInt(appId)
-                }
+                },
+                relations: ["service"]
             }
         )
 
