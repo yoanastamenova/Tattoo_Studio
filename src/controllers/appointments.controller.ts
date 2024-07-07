@@ -4,7 +4,7 @@ import { Appointment } from "../database/models/Appointment";
 export const createAppointment = async (req: Request, res: Response) => {
     try {
         //1. Get the needed information
-        const appDate = req.body.appDate;
+        const appDate = req.body.appointment_date;
         const userID = req.tokenData.id;
         const serviceID = req.body.service_id;
 
