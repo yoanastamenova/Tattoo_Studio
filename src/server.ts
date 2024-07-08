@@ -48,8 +48,8 @@ app.put('/api/user/:id/:role', auth, isAdmin, changeUserRole)  // to change User
 
 app.post('/api/appointments/create', auth, createAppointment)       //Create new appointment           - pass to Thunder > auth > your token hash
 app.put('/api/appointments/change', auth, updateAppointment)      //Update an appointment           - pass to Thunder > auth > your token hash
-app.get('/api/appointments/:id', auth, findAppointmendById)       //Show an appointment by ID                - pass to Thunder > auth > your token hash
 app.get('/api/appointments/scheduled', auth, showMyAppointments)  //**TO BE CHECKED */        //Show all my appointments        - pass to Thunder > auth > your token hash
+app.get('/api/appointments/:id', auth, findAppointmendById)       //Show an appointment by ID                - pass to Thunder > auth > your token hash
 
 app.delete('/api/appointments/delete', auth, deleteAppointment)      //to delete selected appoitnment
 

@@ -1,0 +1,302 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "Tattoo_studio",
+    "collectionId": "8ae5a7be-e600-4c35-8fd3-3892dd196abe",
+    "dateExported": "2024-07-08T07:38:34.974Z",
+    "version": "1.2",
+    "folders": [
+        {
+            "_id": "e8fab821-12ce-4061-a8db-31a90dc44bc3",
+            "name": "AUTHENTICATION",
+            "containerId": "",
+            "created": "2024-07-05T15:45:12.598Z",
+            "sortNum": 2500
+        },
+        {
+            "_id": "94a68b81-1727-43dd-8b94-0ba65da14399",
+            "name": "USER",
+            "containerId": "",
+            "created": "2024-07-05T15:48:25.289Z",
+            "sortNum": 5000
+        },
+        {
+            "_id": "c8df10f9-1f13-46d5-8361-feb7cf340992",
+            "name": "SERVICES",
+            "containerId": "",
+            "created": "2024-07-05T15:45:24.173Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "9b04e0cf-eeec-4f1c-bfe0-bbdbbaf7c0f9",
+            "name": "APPOINTMENTS",
+            "containerId": "",
+            "created": "2024-07-05T15:45:42.340Z",
+            "sortNum": 30000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "01b7b97d-cafc-4469-a9e6-88571ef37603",
+            "colId": "8ae5a7be-e600-4c35-8fd3-3892dd196abe",
+            "containerId": "e8fab821-12ce-4061-a8db-31a90dc44bc3",
+            "name": "register",
+            "url": "localhost:4000/api/auth/register",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-07-05T15:46:10.921Z",
+            "modified": "2024-07-08T07:09:02.809Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"dani@dani.com\",\n  \"password_hash\": \"123456789\",\n  \"role\": 2\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "82c8dd93-369f-4ae6-bb1d-e72933956006",
+            "colId": "8ae5a7be-e600-4c35-8fd3-3892dd196abe",
+            "containerId": "e8fab821-12ce-4061-a8db-31a90dc44bc3",
+            "name": "login",
+            "url": "localhost:4000/api/auth/login",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-07-05T15:47:21.307Z",
+            "modified": "2024-07-08T07:19:26.565Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n   \"email\": \"dani@dani.com\",\n   \"password_hash\": \"123456789\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "e0e6c572-a540-4685-9485-690b893714e5",
+            "colId": "8ae5a7be-e600-4c35-8fd3-3892dd196abe",
+            "containerId": "94a68b81-1727-43dd-8b94-0ba65da14399",
+            "name": "AllUsers",
+            "url": "localhost:4000/api/users",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-07-05T15:48:56.832Z",
+            "modified": "2024-07-05T15:49:38.897Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZV9pZCI6MiwiZW1haWwiOiJ5b2FuYUBiYW5hbmEiLCJpYXQiOjE3MjAxOTQ1NjgsImV4cCI6MTcyMDIwMTc2OH0.nhpiS7iw7RT3DtKBBKHEJsxhSH9gjVwI4X7YfZ9u0wU"
+            }
+        },
+        {
+            "_id": "7021f7eb-8b46-4bbd-a747-2c28ad468b57",
+            "colId": "8ae5a7be-e600-4c35-8fd3-3892dd196abe",
+            "containerId": "94a68b81-1727-43dd-8b94-0ba65da14399",
+            "name": "Profile",
+            "url": "localhost:4000/api/users/profile",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2024-07-05T15:49:58.712Z",
+            "modified": "2024-07-05T15:50:14.031Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZV9pZCI6MiwiZW1haWwiOiJ5b2FuYUBiYW5hbmEiLCJpYXQiOjE3MjAxOTQ1NjgsImV4cCI6MTcyMDIwMTc2OH0.nhpiS7iw7RT3DtKBBKHEJsxhSH9gjVwI4X7YfZ9u0wU"
+            }
+        },
+        {
+            "_id": "2d1f5e21-83a1-47a6-8c8f-edd150a4c85c",
+            "colId": "8ae5a7be-e600-4c35-8fd3-3892dd196abe",
+            "containerId": "94a68b81-1727-43dd-8b94-0ba65da14399",
+            "name": "UpdateProfile",
+            "url": "localhost:4000/api/users/profile",
+            "method": "PUT",
+            "sortNum": 70000,
+            "created": "2024-07-05T15:51:59.593Z",
+            "modified": "2024-07-05T15:52:30.591Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"yoana@banana.com\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZV9pZCI6MiwiZW1haWwiOiJ5b2FuYUBiYW5hbmEiLCJpYXQiOjE3MjAxOTQ1NjgsImV4cCI6MTcyMDIwMTc2OH0.nhpiS7iw7RT3DtKBBKHEJsxhSH9gjVwI4X7YfZ9u0wU"
+            }
+        },
+        {
+            "_id": "032757c8-3bf4-4515-b18b-5304bd47ca07",
+            "colId": "8ae5a7be-e600-4c35-8fd3-3892dd196abe",
+            "containerId": "c8df10f9-1f13-46d5-8361-feb7cf340992",
+            "name": "AllServices",
+            "url": "localhost:4000/api/services",
+            "method": "GET",
+            "sortNum": 80000,
+            "created": "2024-07-05T15:53:07.076Z",
+            "modified": "2024-07-05T15:53:23.779Z",
+            "headers": []
+        },
+        {
+            "_id": "4c04628b-9f5e-4973-982a-902aa93f9bda",
+            "colId": "8ae5a7be-e600-4c35-8fd3-3892dd196abe",
+            "containerId": "c8df10f9-1f13-46d5-8361-feb7cf340992",
+            "name": "Create",
+            "url": "localhost:4000/api/services/new",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2024-07-05T15:53:36.828Z",
+            "modified": "2024-07-05T15:55:00.481Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"service_name\": \"Personalized tattoo design\",\n  \"description\": \"Custom tattoos are one-of-a-kind designs that are created specifically for the person who will wear them. To get a custom tattoo, you'll typically need to schedule a consultation with a tattoo artist. During this meeting, you'll discuss your design ideas, size preferences, and placement options.\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZV9pZCI6MiwiZW1haWwiOiJ5b2FuYUBiYW5hbmEiLCJpYXQiOjE3MjAxOTQ1NjgsImV4cCI6MTcyMDIwMTc2OH0.nhpiS7iw7RT3DtKBBKHEJsxhSH9gjVwI4X7YfZ9u0wU"
+            }
+        },
+        {
+            "_id": "aa938c3d-efe4-4b5b-a8ba-8ce8919509ea",
+            "colId": "8ae5a7be-e600-4c35-8fd3-3892dd196abe",
+            "containerId": "c8df10f9-1f13-46d5-8361-feb7cf340992",
+            "name": "Update",
+            "url": "localhost:4000/api/services/:id",
+            "method": "PUT",
+            "sortNum": 100000,
+            "created": "2024-07-05T15:55:23.229Z",
+            "modified": "2024-07-05T17:18:26.307Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 2,\n  \"service_name\": \"Piercing\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZV9pZCI6MiwiZW1haWwiOiJ5b2FuYUBiYW5hbmEiLCJpYXQiOjE3MjAxOTQ1NjgsImV4cCI6MTcyMDIwMTc2OH0.nhpiS7iw7RT3DtKBBKHEJsxhSH9gjVwI4X7YfZ9u0wU"
+            }
+        },
+        {
+            "_id": "8120a1aa-b393-4082-838e-e7504508cb6c",
+            "colId": "8ae5a7be-e600-4c35-8fd3-3892dd196abe",
+            "containerId": "c8df10f9-1f13-46d5-8361-feb7cf340992",
+            "name": "Delete",
+            "url": "localhost:4000/api/services/:id",
+            "method": "DELETE",
+            "sortNum": 110000,
+            "created": "2024-07-05T16:09:05.464Z",
+            "modified": "2024-07-05T16:09:41.201Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 3\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZV9pZCI6MiwiZW1haWwiOiJ5b2FuYUBiYW5hbmEiLCJpYXQiOjE3MjAxOTQ1NjgsImV4cCI6MTcyMDIwMTc2OH0.nhpiS7iw7RT3DtKBBKHEJsxhSH9gjVwI4X7YfZ9u0wU"
+            }
+        },
+        {
+            "_id": "1cafafc0-6bb4-4830-8fda-a9b53e031801",
+            "colId": "8ae5a7be-e600-4c35-8fd3-3892dd196abe",
+            "containerId": "9b04e0cf-eeec-4f1c-bfe0-bbdbbaf7c0f9",
+            "name": "Create",
+            "url": "localhost:4000/api/appointments/create",
+            "method": "POST",
+            "sortNum": 120000,
+            "created": "2024-07-05T16:30:42.286Z",
+            "modified": "2024-07-08T07:21:43.833Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"appointment_date\": \"2024/01/03\",\n  \"service_id\": 2\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Nywicm9sZV9pZCI6MSwiZW1haWwiOiJkYW5pQGRhbmkuY29tIiwiaWF0IjoxNzIwNDIzMTY2LCJleHAiOjE3MjA0MzAzNjZ9.Rvm8DeHe-OTXpq7iF5PlD1SX8QrrILM953CBzEwsCuE"
+            }
+        },
+        {
+            "_id": "cf3d8a88-9af9-405e-810c-61b24fce6339",
+            "colId": "8ae5a7be-e600-4c35-8fd3-3892dd196abe",
+            "containerId": "9b04e0cf-eeec-4f1c-bfe0-bbdbbaf7c0f9",
+            "name": "Update",
+            "url": "localhost:4000/api/appointments/:id",
+            "method": "GET",
+            "sortNum": 140000,
+            "created": "2024-07-05T16:40:32.933Z",
+            "modified": "2024-07-07T16:56:06.985Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 1\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Niwicm9sZV9pZCI6MSwiZW1haWwiOiJtb3JlQG1vcmVwZS5jb20iLCJpYXQiOjE3MjAzNzEyOTgsImV4cCI6MTcyMDM3ODQ5OH0.fR7cFPTK1Xs_c1VxaR_DBN2EoittjC-P-zOrBuNUD9Y"
+            }
+        },
+        {
+            "_id": "937260b4-8ae7-4f35-a8da-1c4c1dbbb5d3",
+            "colId": "8ae5a7be-e600-4c35-8fd3-3892dd196abe",
+            "containerId": "9b04e0cf-eeec-4f1c-bfe0-bbdbbaf7c0f9",
+            "name": "FindAppointment",
+            "url": "localhost:4000/api/appointments/:id",
+            "method": "GET",
+            "sortNum": 160000,
+            "created": "2024-07-05T17:03:41.016Z",
+            "modified": "2024-07-08T07:32:49.389Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 3\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Nywicm9sZV9pZCI6MSwiZW1haWwiOiJkYW5pQGRhbmkuY29tIiwiaWF0IjoxNzIwNDIzMTY2LCJleHAiOjE3MjA0MzAzNjZ9.Rvm8DeHe-OTXpq7iF5PlD1SX8QrrILM953CBzEwsCuE"
+            }
+        },
+        {
+            "_id": "0e52a9d9-2454-4bf3-9751-9b445c51a437",
+            "colId": "8ae5a7be-e600-4c35-8fd3-3892dd196abe",
+            "containerId": "9b04e0cf-eeec-4f1c-bfe0-bbdbbaf7c0f9",
+            "name": "UserAppointments",
+            "url": "localhost:4000/api/appointments/scheduled",
+            "method": "GET",
+            "sortNum": 170000,
+            "created": "2024-07-05T17:11:49.466Z",
+            "modified": "2024-07-08T07:23:18.937Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Nywicm9sZV9pZCI6MSwiZW1haWwiOiJkYW5pQGRhbmkuY29tIiwiaWF0IjoxNzIwNDIzMTY2LCJleHAiOjE3MjA0MzAzNjZ9.Rvm8DeHe-OTXpq7iF5PlD1SX8QrrILM953CBzEwsCuE"
+            }
+        },
+        {
+            "_id": "b2b7ec7e-c1e8-4a35-b1e5-6efe05110bcc",
+            "colId": "8ae5a7be-e600-4c35-8fd3-3892dd196abe",
+            "containerId": "9b04e0cf-eeec-4f1c-bfe0-bbdbbaf7c0f9",
+            "name": "Delete",
+            "url": "localhost:4000/api/appointments/delete",
+            "method": "DELETE",
+            "sortNum": 180000,
+            "created": "2024-07-05T17:14:58.640Z",
+            "modified": "2024-07-05T17:16:00.516Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 1\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZV9pZCI6MiwiZW1haWwiOiJ5b2FuYUBiYW5hbmEiLCJpYXQiOjE3MjAxOTQ1NjgsImV4cCI6MTcyMDIwMTc2OH0.nhpiS7iw7RT3DtKBBKHEJsxhSH9gjVwI4X7YfZ9u0wU"
+            }
+        }
+    ],
+    "ref": "Dr6EkI2oySvA4_ENvXVuRaVemMIbCta3CjeOK7k0Kx76PMA363_ukznkuNFwTp_cipE5Ecwelnjg5IxoxZo1ZA"
+}

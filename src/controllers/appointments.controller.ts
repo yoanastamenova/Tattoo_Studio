@@ -120,7 +120,7 @@ export const findAppointmendById = async (req: Request, res: Response) => {
         )
 
         if (!appId) {
-            return res.status(400).json(
+            return res.status(404).json(
                 {
                     success: false,
                     message: "Appointment not found!"
@@ -153,6 +153,7 @@ export const showMyAppointments = async (req: Request, res: Response) => {
     try {
         const userId = req.tokenData.id;
 
+        // console.log(userId)
         const appointment = await Appointment.find(
             {
                 select: {
@@ -188,7 +189,7 @@ export const showMyAppointments = async (req: Request, res: Response) => {
         res.status(500).json(
             {
                 susscess: false,
-                message: "The selected user appointments cannot be retrived!",
+                message: "aaaaa",
                 error: error
             }
         )
