@@ -43,8 +43,8 @@ export const getUserProfile = async (req: Request, res: Response) => {
         const user = await User.findOne(
             {
                 select: {
-                   email: true,
-                   created_at: true,
+                    email: true,
+                    created_at: true,
                 },
                 where: {
                     id: userId
@@ -95,12 +95,12 @@ export const modifyUserProfile = async (req: Request, res: Response) => {
         }
 
         // 3. Insert new data that will be changed and saved into BD
-         const updateBody = await User.update(
+        const updateBody = await User.update(
             {
-                id: userId 
+                id: userId
             },
             body
-         )
+        )
 
         // 4. Confirmation to web page 
 
@@ -133,8 +133,8 @@ export const getUserByEmail = async (req: Request, res: Response) => {
         const user = await User.findOne(
             {
                 select: {
-                   email: true,
-                   created_at: true,
+                    email: true,
+                    created_at: true,
                 },
                 where: {
                     id: userId,
@@ -199,37 +199,34 @@ export const changeUserRole = async (req: Request, res: Response) => {
 
 export const deleteUserById = async (req: Request, res: Response) => {
     try {
-        //1. Get the id of the user we want to delete
+        const userID = req.body.id
 
-        const userIdToDelete = Number(req.params.id)
+        const service = await User.findOneBy({
+            id: parseInt(userID)
+        })
 
-        //2. Delete the user from the DataBase
-        const userDeleted = await User.delete(userIdToDelete)
-
-        if (!userDeleted.affected) {
-            return res.status(400).json(
-                {
-                    success: false,
-                    message: "The ID of the user does not exist!"
-                }
-            )
+        if (!service) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found"
+            })
         }
 
-        //3. Provide a response
-        res.status(200).json(
-            {
-                success: true,
-                message: "User was deleted successfully!",
-                data: userDeleted
-            }
+        const deletedUser = await User.delete({
+            id: parseInt(userID)
+        }
         )
+
+        return res.status(200).json({
+            success: true,
+            message: "Service deleted successfully",
+            data: deletedUser
+        })
     } catch (error) {
-        res.status(500).json(
-            {
-                success: false,
-                message: "Error deleting user! Please, try again!",
-                error: error
-            }
-        )
+        return res.status(500).json({
+            success: false,
+            message: "User can't be deleted",
+            error: error
+        })
     }
 }

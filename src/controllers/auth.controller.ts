@@ -8,7 +8,6 @@ export const register = async (req: Request, res: Response) => {
         //1. Retrive all the information of the request
         const email = req.body.email;
         const password_hash = req.body.password_hash;
-        const role = req.body.role_id;
 
         // const body = { email, password_hash }
 
@@ -45,8 +44,7 @@ export const register = async (req: Request, res: Response) => {
         const newUser = await User.create(
             {
                 email: email,
-                password_hash: passwordCrypted,
-                role: role
+                password_hash: passwordCrypted
             }
         ).save();
 
