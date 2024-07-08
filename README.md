@@ -1,5 +1,7 @@
 # Tattoo Studio Database Project
 
+Welcome to my first backend project using various technologies and frameworks!
+
 <img src="./img/banner.jpg">
 <br>
 
@@ -22,7 +24,8 @@
 </details>
 
 ## About the project
-This project is about learning to use Express JS together with some other frameworks such as bcrypt and jsonwebtoken on the way. The main idea was creating a Database which logs in users/admins and Super Admins to a Tattoo Studio Web Page. To be fully functional users can create appointments, change them, choose what kind of service they want and so on. The same goes for admins(the tattoo artists) and we have one super admin which is the owner of the database and can manage everything if needed. More to come in terms of functionalities soon :)  
+This project is about learning to use Express JS together with some other frameworks such as bcrypt and jsonwebtoken on the way. The main idea was creating a Database which logs in users/admins and Super Admins to a Tattoo Studio Web Page. To be fully functional users can create appointments, change them, choose what kind of service they want and so on. The same goes for admins(the tattoo artists) and we have one super admin which is the owner of the database and can manage everything if needed.  
+<br> More functionalities coming veeeery soon! :)  
 
 ## Deploy 🚀
 <div align="center">
@@ -41,11 +44,27 @@ Used technologies for the project:
 <a href="https://developer.mozilla.org/es/docs/Web/JavaScript">
     <img src= "https://img.shields.io/badge/javascipt-EFD81D?style=for-the-badge&logo=javascript&logoColor=black"/>
 </a>
+<a href="">
+    <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
+</a>
+<a href="">
+<img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
+</a>
+<a href="">
+    <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white" alt="JWT" />
+</a>
+<a href="">
+    <img src="https://img.shields.io/badge/bcrypt-3178C6?style=for-the-badge&" alt="TypeScript" />
+</a>
  </div>
 
 
 ## ER Diagram from SQL
 <img src="./img/Screenshot 2024-07-03 at 20.05.06.png">
+
+- We have 4 entities in our Database created here. The strong among them is Roles (it can exist by itself), then we have Users which has many to one relation
+with roles. After this, we have Services which has One to many relation with our last entitiy (Appointments). Speaking of it - Appointments is the weekest of all
+entities, because it depends strongly on Users (because of the user_id) and Services(because of the service_id). More or less our database can be easily understood just by looking at the DDL schema posted here.
 
 ## Local installation option
 1. Clone the repository from the url
@@ -145,6 +164,7 @@ Used technologies for the project:
 </details>
 
 <details>
+
 <summary>Appointments</summary>
 
 - APPOINTMENTS
@@ -322,14 +342,14 @@ To achieve my project I used data from the following sites:
 ## Development:
 
 ``` js
- const developer = "datata";
+ const developer = "yoanastamenova";
 
- console.log("Desarrollado por: " + datata);
+ console.log("Developed by: " + developer);
 ```  
 
 ## Appreciations:
 
-Forever gratefull to GeeksHubs Academy for the oportunety to learn and grow on my career path.
+Forever gratefull to GeeksHubs Academy for the oportunety to learn and grow on my career path. <3
 
 ## Contact
 <a href = "mailto:micorreoelectronico@gmail.com"><img src="https://img.shields.io/badge/Gmail-C6362C?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
