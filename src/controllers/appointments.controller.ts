@@ -50,13 +50,12 @@ export const createAppointment = async (req: Request, res: Response) => {
 
 export const updateAppointment = async (req: Request, res: Response) => {
     try {
-        //1. Get the ID of the appointment and user
-        const userID = req.tokenData.id;
-        const appointmentID = req.params.id;
-        const newAppInfo = req.body;
+        //1. Get the ID of the appointment we want to update
+        const appointmentID = req.body.id;
+        const body = req.body;
 
         //2. Verify the appID
-        const findApp = await Appointment.findOne(
+        const appointment = await Appointment.findOne(
             {
                 where: {
                     id: parseInt(appointmentID)
@@ -64,7 +63,7 @@ export const updateAppointment = async (req: Request, res: Response) => {
             }
         )
 
-        if (!findApp) {
+        if (!appointment) {
             return res.status(404).json(
                 {
                     success: false,
@@ -77,9 +76,9 @@ export const updateAppointment = async (req: Request, res: Response) => {
 
         const updateApp = await Appointment.update(
             {
-                id: parseInt(req.params.id)
+                id: parseInt(appointmentID)
             },
-            newAppInfo
+            body
         )
 
         //4. Response provide
@@ -106,16 +105,28 @@ export const updateAppointment = async (req: Request, res: Response) => {
 export const findAppointmendById = async (req: Request, res: Response) => {
     try {
         //1. Find the ID of the appointment
-        const appId = req.params.id;
+        const appId = req.body.id;
+        const userID = req.tokenData.id;
 
         //2. Search app by ID in our database
         const appointment = await Appointment.findOne(
             {
                 where: {
+                    user: { id: userID },
                     id: parseInt(appId)
-                }
+                },
+                relations: {service: {}}
             }
         )
+
+        if (!appId) {
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: "Appointment not found!"
+                }
+            )
+        }
 
         //3. Provide response 
         res.json(
@@ -140,47 +151,49 @@ export const findAppointmendById = async (req: Request, res: Response) => {
 
 export const showMyAppointments = async (req: Request, res: Response) => {
     try {
-        //1. Get user ID 
-        const userID = req.params.id;
+        const userId = req.tokenData.id;
 
-        //2. Search app by this user ID in our database
+        // console.log(userId)
         const appointment = await Appointment.find(
             {
-                where: {
-                    id: parseInt(userID)
-                }
-            }
-        )
-
-        if(!userID) {
-            return res.status(400).json(
+                select: {
+                    id: true,
+                    appointment_date: true,
+                    user: {
+                        id: true,
+                        email: true
+                    },
+                    service: {
+                        id: true,
+                        service_name: true
+                    },
+                },
+                where:
                 {
-                    success: false,
-                    message: "Cannot find appointment"
-                }
-            )
-        }
+                    user_id: userId
+                },
 
-        //3. Provide response 
-        res.json(
+                relations: { user: {}, service: {} }
+            }
+        );
+
+        res.status(200).json(
             {
                 success: true,
-                message: "Appointments retrived successfully!",
+                message: "User appointments retrived successfully!",
                 data: appointment
             }
         )
 
-        
     } catch (error) {
         res.status(500).json(
             {
-                success: false,
-                message: "Error showing profile appointments!",
+                susscess: false,
+                message: "aaaaa",
                 error: error
             }
         )
     }
-
 }
 
 export const deleteAppointment = async (req: Request, res: Response) => {
