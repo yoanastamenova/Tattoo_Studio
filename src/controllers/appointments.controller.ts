@@ -115,7 +115,7 @@ export const findAppointmendById = async (req: Request, res: Response) => {
                     user: { id: userID },
                     id: parseInt(appId)
                 },
-                relations: ["service"]
+                relations: {service: {}}
             }
         )
 
