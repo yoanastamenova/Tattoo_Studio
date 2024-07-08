@@ -151,27 +151,36 @@ export const findAppointmendById = async (req: Request, res: Response) => {
 
 export const showMyAppointments = async (req: Request, res: Response) => {
     try {
-        const userId = req.tokenData.id
+        const userId = req.tokenData.id;
 
         const appointment = await Appointment.find(
             {
+                select: {
+                    id: true,
+                    appointment_date: true,
+                    user: {
+                        id: true,
+                        email: true
+                    },
+                    service: {
+                        id: true,
+                        service_name: true
+                    },
+                },
                 where:
                 {
-                    user:
-                    {
-                        id: userId
-                    }
+                    user_id: userId
                 },
-                relations: ["service"]
-            }
 
+                relations: {user:{}, service:{}}
+            }
         );
         console.log(appointment); // Muestra la información del servicio
 
         res.status(200).json(
             {
                 success: true,
-                message: "user's appointments: ",
+                message: "User's appointments: ",
                 data: appointment
             }
         )
