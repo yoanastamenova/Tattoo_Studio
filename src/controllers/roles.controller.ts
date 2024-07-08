@@ -1,4 +1,4 @@
-import e, { Request, Response } from "express";
+import { Request, Response } from "express";
 import { Role } from "../database/models/Role";
 
 export const getRoles = async (req: Request, res: Response) => {

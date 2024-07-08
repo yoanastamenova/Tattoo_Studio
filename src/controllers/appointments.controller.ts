@@ -112,14 +112,14 @@ export const findAppointmendById = async (req: Request, res: Response) => {
         const appointment = await Appointment.findOne(
             {
                 where: {
-                    user: {id: userID},
+                    user: { id: userID },
                     id: parseInt(appId)
                 },
                 relations: ["service"]
             }
         )
 
-        if(!appId){
+        if (!appId) {
             return res.status(400).json(
                 {
                     success: false,
@@ -172,15 +172,14 @@ export const showMyAppointments = async (req: Request, res: Response) => {
                     user_id: userId
                 },
 
-                relations: {user:{}, service:{}}
+                relations: { user: {}, service: {} }
             }
         );
-        console.log(appointment); // Muestra la información del servicio
 
         res.status(200).json(
             {
                 success: true,
-                message: "User's appointments: ",
+                message: "User appointments retrived successfully!",
                 data: appointment
             }
         )
@@ -189,13 +188,12 @@ export const showMyAppointments = async (req: Request, res: Response) => {
         res.status(500).json(
             {
                 susscess: false,
-                message: "user's appointment can't be retrieved",
+                message: "The selected user appointments cannot be retrived!",
                 error: error
             }
         )
     }
-};
-
+}
 
 export const deleteAppointment = async (req: Request, res: Response) => {
     try {
