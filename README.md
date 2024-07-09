@@ -31,7 +31,7 @@ This project is about learning to use Express JS together with some other framew
 ## Deploy 🚀
 
 <div align="center">
-    <a href="https://www.google.com"><strong> Web page coming soon! </strong></a>🚀🚀🚀
+    <a href="https://tattoo-studio.zeabur.app/"><strong> Web page coming soon! </strong></a>🚀🚀🚀
 </div>
 
 ## Stack
