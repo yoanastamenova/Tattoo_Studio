@@ -143,6 +143,15 @@ export const getUserByEmail = async (req: Request, res: Response) => {
             }
         )
 
+        if (!userEmail) {
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: "User with this email not found!"
+                }
+            )
+        }
+
         //3. Provide a response
         res.json(
             {
