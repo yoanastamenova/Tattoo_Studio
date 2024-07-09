@@ -24,16 +24,20 @@ Welcome to my first backend project using various technologies and frameworks!
 </details>
 
 ## About the project
+
 This project is about learning to use Express JS together with some other frameworks such as bcrypt and jsonwebtoken on the way. The main idea was creating a Database which logs in users/admins and Super Admins to a Tattoo Studio Web Page. To be fully functional users can create appointments, change them, choose what kind of service they want and so on. The same goes for admins(the tattoo artists) and we have one super admin which is the owner of the database and can manage everything if needed.  
-<br> More functionalities coming veeeery soon! :)  
+<br> More functionalities coming veeeery soon! :)
 
 ## Deploy 🚀
+
 <div align="center">
     <a href="https://www.google.com"><strong> Web page coming soon! </strong></a>🚀🚀🚀
 </div>
 
 ## Stack
+
 Used technologies for the project:
+
 <div align="center">
 <a href="https://www.expressjs.com/">
     <img src= "https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB"/>
@@ -58,108 +62,131 @@ Used technologies for the project:
 </a>
  </div>
 
-
 ## ER Diagram from SQL
+
 <img src="./img/Screenshot 2024-07-03 at 20.05.06.png">
 
 - We have 4 entities in our Database created here. The strong among them is Roles (it can exist by itself), then we have Users which has many to one relation
-with roles. After this, we have Services which has One to many relation with our last entitiy (Appointments). Speaking of it - Appointments is the weekest of all
-entities, because it depends strongly on Users (because of the user_id) and Services(because of the service_id). More or less our database can be easily understood just by looking at the DDL schema posted here.
+  with roles. After this, we have Services which has One to many relation with our last entitiy (Appointments). Speaking of it - Appointments is the weekest of all
+  entities, because it depends strongly on Users (because of the user_id) and Services(because of the service_id). More or less our database can be easily understood just by looking at the DDL schema posted here.
 
 ## Local installation option
+
 1. Clone the repository from the url
-2. ` $ npm install `
+2. `$ npm install`
 3. Connect the cloned repo with our Database
-4. ``` $ Execute the migrations ``` 
-5. ``` $ Execute the seeders ``` 
-6. ``` $ npm run dev ``` to elevate our server
+4. `$ Execute the migrations`
+5. `$ Execute the seeders`
+6. `$ npm run dev` to elevate our server
 7. ...
 
 ## Endpoints
+
 <details>
 <summary>Authentication</summary>
 
 - AUTH
-    - REGISTER
 
-            POST http://localhost:4000/api/auth/register
-        body:
-        ``` js
-            {
-                "user": "Name",
-                "email": "yourmail@mail.com",
-                "password": "123456789"
-            }
-        ```
+  - REGISTER
 
-    - LOGIN
+          POST http://localhost:4000/api/auth/register
 
-            POST http://localhost:4000/api/auth/login  
-        body:
-        ``` js
-            {
-                "user": "Name",
-                "email": "yourmail@mail.com",
-                "password": "123456789"
-            }
-        ```
-        </details>
-        <details>
+    body:
+
+    ```js
+        {
+            "user": "Name",
+            "email": "yourmail@mail.com",
+            "password": "123456789"
+        }
+    ```
+
+  - LOGIN
+
+          POST http://localhost:4000/api/auth/login
+
+    body:
+
+    ```js
+        {
+            "user": "Name",
+            "email": "yourmail@mail.com",
+            "password": "123456789"
+        }
+    ```
+
+      </details>
+      <details>
 
 <summary>Users</summary>
 
 - USERS
 
-    - GET ALL USERS (ONLY FOR ADMINS)
+      - GET ALL USERS (ONLY FOR ADMINS)
 
-            GET http://localhost:4000/api/users
-        auth:
-        ```
-        your token
+              GET http://localhost:4000/api/users
 
-        ```
+          auth:
+          ```
+          your token
 
-    - CHANGE PROFILE
+          ```
 
-            PUT http://localhost:4000/api/users/profile
-        auth:
-        ```
-        your token
+       - SHOW USER PROFILE
 
-        ```
-        body:
-        ``` js
-            {
-                info you want to change goes here
-            }
-        ```
+              GET http://localhost:4000/api/users/profile
 
-    - USER PROFILE
+          auth:
+          ```
+          your token
 
-            GET http://localhost:4000/api/users/profile
-        auth:
-        ```
-        your token
+          ```
 
-        ```
+      - CHANGE PROFILE INFO
 
+              PUT http://localhost:4000/api/users/profile/change
 
-    - PROFILE UPDATE BY ID
+          auth:
+          ```
+          your token
 
-            GET http://localhost:4000/api/users/profile
-        auth:
-        ```
-        your token
-        ```
+          ```
+          body:
+          ``` js
+              {
+                  info you want to change goes here
+              }
+          ```
 
-    - DELETE USER BY ID
+      - PROFILE FILTERED BY EMAIL
 
-            GET http://localhost:4000/api/users/profile
-        auth:
-        ```
-        your token
-        ```
+              GET http://localhost:4000/api/users/:email
 
+          auth:
+          ```
+          your token
+          ```
+          body:
+          ``` js
+               {
+                  "email": "the users email goes here"
+               }
+          ```
+
+      - DELETE USER BY ID
+
+              GET http://localhost:4000/api/users/:id
+
+          auth:
+          ```
+          your token
+          ```
+          body:
+          ``` js
+               {
+                  "id": "the ID of the user goes here"
+               }
+          ```
 
 </details>
 
@@ -169,189 +196,258 @@ entities, because it depends strongly on Users (because of the user_id) and Serv
 
 - APPOINTMENTS
 
-    - CREATE APPOINTMENT
+      - CREATE APPOINTMENT
 
-            POST http://localhost:4000/api/appointments/create
-        
-        auth:
-        ```
-        your token
-        ```
-        body:
-        ``` js
-            {
-                "appointment_date": "2024/01/01",
-                "service_id": 2
-            }
-        ```
+              POST http://localhost:4000/api/appointments/create
 
-    - CHANGE APPOINTMENT
+          auth:
+          ```
+          your token
+          ```
+          body:
+          ``` js
+              {
+                  "appointment_date": "2024/01/01",
+                  "service_id": 2
+              }
+          ```
 
-            PUT http://localhost:4000/api/appointments/change
-             
-        auth:
-        ```
-        your token
-        ```
-        body:
-        ``` js
-            {
-                "id": yourappid,
-                "infotochange": change
-            }
-        ```
+      - CHANGE APPOINTMENT
 
-        - FIND APPOINTMENT BY ID
-        
-            GET http://localhost:4000/api/appointments/:id
-             
-        auth:
-        ```
-        your token
-        ```
-        body:
-        ``` js
-            {
-                "id": 1
-            }
-        ```
+              PUT http://localhost:4000/api/appointments/change
 
-        - SHOW USER APPOINTMENTS
+          auth:
+          ```
+          your token
+          ```
+          body:
+          ``` js
+              {
+                  "id": your appointment id,
+                  "infotochange": value
+              }
+          ```
 
-            GET http://localhost:4000/api/appointments/scheduled
-             
-        auth:
-        ```
-        your token
-        ``` 
+          - FIND APPOINTMENT BY ID
 
-        - DELETE APPOINTMENT
+              GET http://localhost:4000/api/appointments/:id
 
-            DELETE http://localhost:4000/api/appointments/delete
-             
-        auth:
-        ```
-        your token
-        ``` 
-        body:
-        ``` js
-            {
-                "id": 1
-            }
-        ```
-</details>
+          auth:
+          ```
+          your token
+          ```
+          body:
+          ``` js
+              {
+                  "id": 1
+              }
+          ```
+
+          - SHOW USER APPOINTMENTS
+
+              GET http://localhost:4000/api/appointments/scheduled
+
+          auth:
+          ```
+          your token
+          ```
+
+          - DELETE APPOINTMENT
+
+              DELETE http://localhost:4000/api/appointments/delete
+
+          auth:
+          ```
+          your token
+          ```
+          body:
+          ``` js
+              {
+                  "id": 1
+              }
+          ```
+
+  </details>
 
 <details>
 
 <summary> Services </summary>
 
-- SERVICES
-    - CREATE SERVICE
+- SERVICES 
 
-            POST http://localhost:4000/api/services
-                 
-        auth:
-        ```
-        your token
-        ``` 
-        body:
-        ``` js
-            {
-                "service_name": "Name",
-                "description": "blablabla.com"
-            }
-        ```
+    - CREATE SERVICE (only for admins)
+        POST http://localhost:4000/api/services
 
-    - SEE ALL SERVICES
+          auth:
+          ```
+          your token
+          ```
+          body:
+          ``` js
+              {
+                  "service_name": "Name",
+                  "description": "blablabla.com"
+              }
+          ```
 
-            GET http://localhost:4000/api/services
-                 
-        auth:
-        ```
-        your token
-        ``` 
-        
-        
-    - UPDATE SERVICE
+      - SEE ALL SERVICES
 
-            PUT http://localhost:4000/api/services/:id
-                 
-        auth:
-        ```
-        your token
-        ``` 
-        body:
-        ``` js
-            {
-                "id": 2,
-                "description": "blablabla.com"
-            }
-        ```
-     - FIND SERVICE BY ID
+              GET http://localhost:4000/api/services
 
-            GET http://localhost:4000/api/services/:id
-                 
-        auth:
-        ```
-        your token
-        ``` 
-        body:
-        ``` js
-            {
-                "id": 1
-            }
-        ```
-</details>
+          auth:
+          ```
+          your token
+          ```
 
+
+      - UPDATE SERVICE (only for admins)
+
+              PUT http://localhost:4000/api/services/:id
+
+          auth:
+          ```
+          your token
+          ```
+          body:
+          ``` js
+              {
+                  "id": 2,
+                  "description": "blablabla.com"
+              }
+          ```
+       - DELETE SERVICE BY ID
+
+              GET http://localhost:4000/api/services/:id
+
+          auth:
+          ```
+          your token
+          ```
+          body:
+          ``` js
+              {
+                  "id": 1
+              }
+          ```
+
+  </details>
+
+
+<details>
+
+<summary> Roles </summary>
+
+- ROLES 
+
+    - SEE ALL ROLES (only for admins!)
+
+              GET http://localhost:4000/api/roles
+
+          auth:
+          ```
+          your token
+          ```
+
+    - CREATE ROLE (only for admins)
+        POST http://localhost:4000/api/roles/create
+
+          auth:
+          ```
+          your token
+          ```
+          body:
+          ``` js
+              {
+                  "id": 1,
+                  "name": "hokage"
+              }
+          ```
+
+      - UPDATE ROLE (only for admins)
+
+              PUT http://localhost:4000/api/roles/update/:id
+
+          auth:
+          ```
+          your token
+          ```
+          body:
+          ``` js
+              {
+                  "id": 2,
+                  "infotoupdate": "blablabla"
+              }
+          ```
+       - DELETE ROLE
+
+              DELETE http://localhost:4000/api/roles/delete
+
+          auth:
+          ```
+          your token
+          ```
+          body:
+          ``` js
+              {
+                  "name": superAdmin
+              }
+          ```
+
+  </details>
 
 ## Future functionalities
+
 [ ] Add FRONT-END view
-[ ] Add user login
-[ ] Email and password validations 
+[ ] Add user biometrics
+[ ] Email and password validations
 [ ] ...
 
 ## Contribute to the project
-Feel free to suggest an improvment or functionality to my project. 
+
+Feel free to suggest an improvment or functionality to my project.
 
 There are two ways of doing this:
 
 1. Opening an issue
 2. Creating a fork of the repository
-    - Creating a new branch 
-        ```
-        $ git checkout -b feature/yourUsername -feat
-        ```
-    - Make a commit with your changes
-        ```
-        $ git commit -m 'feat: this X thing'
-        ```
-    - Make a push to the branch
-        ```
-        $ git push origin feature/yourUsername -feat
-        ```
-    - Opening a Pull Request
-
+   - Creating a new branch
+     ```
+     $ git checkout -b feature/yourUsername -feat
+     ```
+   - Make a commit with your changes
+     ```
+     $ git commit -m 'feat: this X thing'
+     ```
+   - Make a push to the branch
+     ```
+     $ git push origin feature/yourUsername -feat
+     ```
+   - Opening a Pull Request
 
 ## Web refferences:
+
 To achieve my project I used data from the following sites:
--  google.com
--  nobleart.com
--  ink.com
+
+- google.com
+- nobleart.com
+- ink.com
 - ...
 
 ## Development:
 
-``` js
- const developer = "yoanastamenova";
+```js
+const developer = "yoanastamenova";
 
- console.log("Developed by: " + developer);
-```  
+console.log("Developed by: " + developer);
+```
 
 ## Appreciations:
 
 Forever gratefull to GeeksHubs Academy for the oportunety to learn and grow on my career path. <3
 
 ## Contact
+
 <a href = "mailto:micorreoelectronico@gmail.com"><img src="https://img.shields.io/badge/Gmail-C6362C?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
-<a href="https://www.linkedin.com/in/linkedinUser/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
+<a href="https://www.linkedin.com/in/linkedinUser/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+
 </p>
