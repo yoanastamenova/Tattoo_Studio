@@ -22,6 +22,15 @@ export class User extends BaseEntity{
     @Column({name: 'role_id'})
     role_id!: number
 
+    @Column({name: 'specialization'})
+    specialization!: string
+
+    @Column({name: 'bio'})
+    bio!: string
+
+    @Column({name: 'style'})
+    style!: string
+
     @Column({name: "created_at"})
     created_at!: Date
 

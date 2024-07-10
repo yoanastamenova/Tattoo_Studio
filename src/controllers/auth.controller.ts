@@ -63,7 +63,7 @@ export const register = async (req: Request, res: Response) => {
         res.status(500).json(
             {
                 success: false,
-                message: "Cannot create user",
+                message: "Cannot create user! Try again!",
                 error: error
             }
         )
@@ -80,7 +80,7 @@ export const userLogIn = async (req: Request, res: Response) => {
             return res.status(400).json(
                 {
                     success: false,
-                    message: "Email or password cannot be empty"
+                    message: "Email or password cannot be empty!"
                 }
             )
         }
@@ -137,7 +137,7 @@ export const userLogIn = async (req: Request, res: Response) => {
         res.status(500).json(
             {
                 success: false,
-                message: "Cannot login user",
+                message: "Cannot login user!",
                 error: error
             }
         )

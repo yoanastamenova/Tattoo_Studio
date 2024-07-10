@@ -94,7 +94,7 @@ export const updateAppointment = async (req: Request, res: Response) => {
         res.status(500).json(
             {
                 success: false,
-                message: "Error changing appointment info!",
+                message: "Error changing appointment information!",
                 error: error
             }
         )
@@ -189,7 +189,7 @@ export const showMyAppointments = async (req: Request, res: Response) => {
         res.status(500).json(
             {
                 susscess: false,
-                message: "aaaaa",
+                message: "User appointments cannot be retrived!",
                 error: error
             }
         )
@@ -218,13 +218,13 @@ export const deleteAppointment = async (req: Request, res: Response) => {
 
         return res.status(200).json({
             success: true,
-            message: "Appointment deleted successfully",
+            message: "Appointment deleted successfully!",
             data: deletedApp
         })
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: "Appointment can't be deleted",
+            message: "Appointment cannot be deleted!",
             error: error
         })
     }

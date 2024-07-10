@@ -62,7 +62,7 @@ export const getAllServices = async (req: Request, res: Response) => {
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: "Services can't be retrieved",
+            message: "Services cannot be retrieved!",
             error: error
         })
     }
@@ -79,7 +79,7 @@ export const updateSerivce = async (req: Request, res: Response) => {
             if (!service) {
                 return res.status(404).json({
                     success: false,
-                    message: "Service not found"
+                    message: "Service not found!"
                 })
             }
     
@@ -97,7 +97,7 @@ export const updateSerivce = async (req: Request, res: Response) => {
         } catch (error) {
             return res.status(500).json({
                 success: false,
-                message: "Service can't be updated",
+                message: "Service cannot be updated!",
                 error: error
             })
         }
@@ -114,7 +114,7 @@ export const deleteService = async (req: Request, res: Response) => {
         if (!service) {
             return res.status(404).json({
                 success: false,
-                message: "Service not found"
+                message: "Service not found!"
             })
         }
 
@@ -125,13 +125,13 @@ export const deleteService = async (req: Request, res: Response) => {
 
         return res.status(200).json({
             success: true,
-            message: "Service deleted successfully",
+            message: "Service deleted successfully!",
             data: updatedservice
         })
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: "Service can't be deleted",
+            message: "Service can't be deleted!",
             error: error
         })
     }

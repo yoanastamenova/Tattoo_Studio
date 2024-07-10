@@ -55,6 +55,21 @@ export class User1720103322889 implements MigrationInterface {
                         default: "now()",
                         onUpdate: "now()"
                     },
+                    {
+                        name: 'specialization',
+                        type: 'varchar',
+                        isNullable: true
+                    },
+                    {
+                        name: 'bio',
+                        type: 'text',
+                        isNullable: true
+                    },
+                    {
+                        name: 'style',
+                        type: 'varchar',
+                        isNullable: true
+                    },
                 ],
                 foreignKeys: [
                     {

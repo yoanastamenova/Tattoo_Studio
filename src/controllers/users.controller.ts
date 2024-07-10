@@ -26,7 +26,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
         res.status(500).json(
             {
                 success: false,
-                message: "Error showing all users",
+                message: "Error showing all users!",
                 error: error
             }
         )
@@ -106,14 +106,14 @@ export const modifyUserProfile = async (req: Request, res: Response) => {
 
         return res.status(200).json({
             success: true,
-            message: "User updated successfully",
+            message: "User information was updated successfully!",
             data: updateBody
         })
 
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: "User can't be updated",
+            message: "User cannot be updated!",
             error: error
         })
     }
@@ -165,7 +165,8 @@ export const getUserByEmail = async (req: Request, res: Response) => {
         res.status(500).json(
             {
                 success: false,
-                message: "Error opening selected user!"
+                message: "Error opening selected user with selected email!",
+                error: error
             }
         )
     }
@@ -236,7 +237,7 @@ export const deleteUserById = async (req: Request, res: Response) => {
         if (!service) {
             return res.status(404).json({
                 success: false,
-                message: "User not found"
+                message: "User not found! Check ID!"
             })
         }
 
@@ -247,7 +248,7 @@ export const deleteUserById = async (req: Request, res: Response) => {
 
         return res.status(200).json({
             success: true,
-            message: "Service deleted successfully",
+            message: "User was deleted successfully!",
             data: deletedUser
         })
     } catch (error) {

@@ -18,7 +18,7 @@ export const getRoles = async (req: Request, res: Response) => {
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: "Roles can't be retrieved",
+            message: "Roles cannot be retrieved!",
             error: error
         })
     }
@@ -46,7 +46,7 @@ export const createRole = async (req: Request, res: Response) => {
         res.status(500).json(
             {
                 success: false,
-                message: "Cannot create new role",
+                message: "Cannot create new role!",
                 error: error
             })
     }

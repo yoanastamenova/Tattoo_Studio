@@ -29,6 +29,12 @@ export const servicesSeeder = async () => {
         service4.description = "This procedure is fast and simple. First, the visible component of the jewellery will be unscrewed, before a short massaging of the jewellery's base/anchor in order to dislodge it. Forceps are then used to remove this from the tissue. The wound will then be closed with sutures or adhesive, depending on the size.";
         await service4.save();
 
+        const service5 = new Service();
+        service5.id = 5;
+        service5.service_name = "Personalised tattoo design";
+        service5.description = "Our creations are our hallmark. If you have something in mind - give us tips and we will make the magic. Take a look at the designs of our renowned artists, which exceed the expectations of our customers every day.";
+        await service5.save();
+
         console.log("===========================");
         console.log("Services seeder executed successfully");
         console.log("===========================");
