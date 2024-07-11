@@ -395,7 +395,7 @@ Used technologies for the project:
 
 ## Future functionalities
 
-✅ Hacer pagina "Reserva"  
+✅ Add artists and relate them with appointments (still in progress) 
 ⬜ Add user biometrics
 ⬜ Email and password validations
 ⬜ ...  
