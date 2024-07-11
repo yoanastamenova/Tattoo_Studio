@@ -28,7 +28,12 @@ export class Appointment1720103974702 implements MigrationInterface {
                         name: "service_id",
                         type: "int",
                         isNullable: false
-                    }
+                    },
+                    // {
+                    //     name: "artist_id",
+                    //     type: "int",
+                    //     isNullable: false
+                    // }
                 ],
                 foreignKeys: [
                     {
@@ -42,7 +47,8 @@ export class Appointment1720103974702 implements MigrationInterface {
                         referencedColumnNames: ['id'],
                         referencedTableName: 'services',
                         onDelete: "CASCADE"
-                    }
+                    },
+                    
                 ]
             }),
             true
@@ -52,5 +58,4 @@ export class Appointment1720103974702 implements MigrationInterface {
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable('appointments')
     }
-
 }

@@ -29,7 +29,6 @@ export const appointmentsSeeder = async () => {
         appointment3.service_id = 1;
         await appointment3.save();
 
-
         console.log("===========================");
         console.log("Appointments seeder executed successfully");
         console.log("===========================");
