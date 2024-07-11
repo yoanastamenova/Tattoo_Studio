@@ -5,7 +5,6 @@ Welcome to my first backend project using various technologies and frameworks!
 <img src="./img/banner.jpg">
 <br>
 
-<details>
   <summary> Table of contents 📝</summary>
   <ol>
     <li><a href="#about-the-project">About the project</a></li>
@@ -21,7 +20,6 @@ Welcome to my first backend project using various technologies and frameworks!
     <li><a href="#appreciations">Appreciations</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
-</details>
 
 ## About the project
 
@@ -397,10 +395,10 @@ Used technologies for the project:
 
 ## Future functionalities
 
-[ ] Add FRONT-END view
-[ ] Add user biometrics
-[ ] Email and password validations
-[ ] ...
+✅ Hacer pagina "Reserva"  
+⬜ Add user biometrics
+⬜ Email and password validations
+⬜ ...  
 
 ## Contribute to the project
 
