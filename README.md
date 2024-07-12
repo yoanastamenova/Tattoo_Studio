@@ -93,7 +93,6 @@ Used technologies for the project:
 
     ```js
         {
-            "user": "Name",
             "email": "yourmail@mail.com",
             "password": "123456789"
         }
@@ -107,7 +106,6 @@ Used technologies for the project:
 
     ```js
         {
-            "user": "Name",
             "email": "yourmail@mail.com",
             "password": "123456789"
         }
@@ -167,7 +165,7 @@ Used technologies for the project:
           body:
           ``` js
                {
-                  "email": "the users email goes here"
+                  "email": "the users email you want to find goes here"
                }
           ```
 
@@ -182,7 +180,7 @@ Used technologies for the project:
           body:
           ``` js
                {
-                  "id": "the ID of the user goes here"
+                  "id": "the ID of the user you want to delete goes here"
                }
           ```
 
