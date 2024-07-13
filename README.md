@@ -41,6 +41,9 @@ Used technologies for the project:
 <a href="https://www.expressjs.com/">
     <img src= "https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB"/>
 </a>
+<a href="https://typescriptlang.org">
+     <img src= "https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" />
+</a>    
 <a href="https://nodejs.org/es/">
     <img src= "https://img.shields.io/badge/node.js-026E00?style=for-the-badge&logo=node.js&logoColor=white"/>
 </a>
@@ -471,12 +474,12 @@ Used technologies for the project:
 <br>
 </details>
 
-## Future functionalities 🌆
-
-✅ Add artists and relate them with appointments (still in progress) 
-⬜ Add user biometrics
-⬜ Email and password validations
-⬜ ...  
+## Future functionalities 
+<br>
+✅ Add artists and relate them with appointments (still in progress) <br>
+⬜ Add user biometrics <br>
+⬜ Email and password validations <br>
+⬜ ...  <br>
 
 ## Contribute to the project 📦
 
