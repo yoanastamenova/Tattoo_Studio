@@ -85,9 +85,9 @@ Used technologies for the project:
 ## Endpoints ⚒
 
 <details>
-<summary>Authentication</summary> 
+<summary>Authentication 🔓</summary> 
 
-- **REGISTER 🔑**
+- REGISTER
 
           POST http://localhost:4000/api/register
 
@@ -102,7 +102,7 @@ Used technologies for the project:
 
 <br>
 
-- **LOGIN 🔓**	
+- LOGIN	
 
           POST http://localhost:4000/api/login
 
@@ -117,9 +117,9 @@ Used technologies for the project:
 </details>
 
 <details>
-<summary>Users</summary>
+<summary>Users 🗂</summary>
 
-- **GET ALL USERS 🔎** (only admin)
+- GET ALL USERS (only admin)
 
           GET http://localhost:4000/api/users
 
@@ -131,7 +131,7 @@ Used technologies for the project:
 
 <br>
 
-- **GET USER PROFILE 🗂**
+- GET USER PROFILE 
 
           GET http://localhost:4000/api/users/profile
 
@@ -143,7 +143,7 @@ Used technologies for the project:
 
 <br>
 
-- **UPDATE USER PROFILE BY ID ⚙️**
+- UPDATE USER PROFILE BY ID
 
           PUT http://localhost:4000/api/profile/update
 
@@ -162,7 +162,7 @@ Used technologies for the project:
     ```
 <br>
 
-- **GET USER BY EMAIL 🪪** (only admin)
+- GET USER BY EMAIL (only admin)
 
           GET http://localhost:4000/api/users/:email
 
@@ -182,7 +182,7 @@ Used technologies for the project:
 <br>
 
 
-- **DELETE USER BY ID 🪪**  (only admin)
+- DELETE USER BY ID (only admin)
 
           DELETE http://localhost:4000/api/users/:id
 
@@ -202,7 +202,7 @@ Used technologies for the project:
 
 <br>
 
-- **CHANGE USER ROLE BY ID 🗂** (only admin)
+- CHANGE USER ROLE BY ID (only admin)
 
           PUT http://localhost:4000/api/users/:id/role
 
@@ -223,9 +223,9 @@ Used technologies for the project:
 </details>
 
 <details>
-<summary>Appointments</summary>
+<summary>Appointments ☎️</summary>
 
-- **CREATE APPOINTMENT ☎️**
+- CREATE APPOINTMENT
 
           POST http://localhost:4000/api/appointments/create
 
@@ -246,7 +246,7 @@ Used technologies for the project:
 
 <br>
 
-- **UPDATE USER APPOINTMENT BY ID☎️**
+- UPDATE USER APPOINTMENT BY ID
 
           PUT http://localhost:4000/api/appointments/change
 
@@ -267,7 +267,7 @@ Used technologies for the project:
 
 <br>
 
-- **GET USER APPIONTMENTS ☎️**
+- GET USER APPIONTMENTS
 
           GET http://localhost:4000/api/appointments/scheduled
 
@@ -279,7 +279,7 @@ Used technologies for the project:
 
 <br>
 
-- **DELETE APPOINTMENT BY ID ☎️**
+- DELETE APPOINTMENT BY ID
 
           DELETE http://localhost:4000/api/appointments/delete
 
@@ -298,7 +298,7 @@ Used technologies for the project:
 
 <br>
 
-- **GET APPOINTMENT BY ID ☎️**
+- GET APPOINTMENT BY ID
 
           GET http://localhost:4000/api/appointments/:id
 
@@ -319,9 +319,9 @@ Used technologies for the project:
 </details>
 
 <details>
-<summary>Services</summary>
+<summary>Services 🪪</summary>
 
-- **GET ALL SERVICES 🗂**
+- GET ALL SERVICES 
 
           GET http://localhost:4000/api/services
 
@@ -333,7 +333,7 @@ Used technologies for the project:
 
 <br>
 
-- **CREATE SERVICE 🗂** (only for admin)
+- CREATE SERVICE (only for admin)
 
           POST http://localhost:4000/api/services
 
@@ -354,7 +354,7 @@ Used technologies for the project:
 
 <br>
 
-- **UPDATE SERVICE BY ID 🪪** (only admin)
+- UPDATE SERVICE BY ID (only admin)
 
           PUT http://localhost:4000/api/services/:id
 
@@ -375,7 +375,7 @@ Used technologies for the project:
 
 <br>
 
-- **DELETE SERVICE BY ID🪪** (only admin)
+- DELETE SERVICE BY ID (only admin)
 
           DELETE http://localhost:4000/api/services/:id
 
@@ -395,9 +395,9 @@ Used technologies for the project:
 </details>
 
 <details>
-<summary>Roles</summary>
+<summary>Roles 🪪</summary>
 
-- **GET ALL ROLES** (only admin)
+- GET ALL ROLES (only admin)
       
      GET http://localhost:4000/api/roles
 
@@ -410,7 +410,7 @@ Used technologies for the project:
 
 <br>
 
-- **CREATE ROLE** (only admin)
+- CREATE ROLE (only admin)
       
       POST http://localhost:4000/api/roles/create
     
@@ -430,7 +430,7 @@ Used technologies for the project:
     ```
 <br>
 
-- **UPDATE ROLE BY ID**  (only admin)
+- UPDATE ROLE BY ID (only admin)
      
      PUT http://localhost:4000/api/roles/update/:id
 
@@ -452,7 +452,7 @@ Used technologies for the project:
 
 <br>
 
-- **DELETE ROLE BY ID** (only admin)
+- DELETE ROLE BY ID (only admin)
 
     PUT http://localhost:4000/api/roles/delete
 
