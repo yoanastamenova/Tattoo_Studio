@@ -37,7 +37,7 @@ app.post('/api/auth/login', userLogIn)   //to log in to your account   - pass to
 
 app.get('/api/users', auth, isAdmin, getAllUsers)       //To show all users in our DB in admin POV         - pass to Thunder > auth > your token hash
 app.get('/api/users/profile',  auth, getUserProfile)             //To see user profile as user POV          - pass to Thunder > auth > your token hash
-app.put('/api/users/profile', auth, modifyUserProfile)             // To modify(update) user profile as user POV    - pass to Thunder > auth > your token hash + body > info to be updated ex. email
+app.put('/api/users/profile/update', auth, modifyUserProfile)             // To modify(update) user profile as user POV    - pass to Thunder > auth > your token hash + body > info to be updated ex. email
 app.get('/api/users/:email', auth, isAdmin, getUserByEmail)         // to get user by mail
 app.delete('/api/users/:id', auth, isAdmin, deleteUserById)        //to eliminate User finded by ID
 app.put('/api/users/:id/role', auth, isAdmin, changeUserRole)      // to change User role finded by ID

@@ -102,53 +102,6 @@ export const updateAppointment = async (req: Request, res: Response) => {
     }
 }
 
-export const findAppointmendById = async (req: Request, res: Response) => {
-    try {
-        //1. Find the ID of the appointment
-        const appId = req.body.id;
-        const userID = req.tokenData.id;
-
-        //2. Search app by ID in our database
-        const appointment = await Appointment.findOne(
-            {
-                where: {
-                    user: { id: userID },
-                    id: parseInt(appId)
-                },
-                relations: { service: {} }
-            }
-        )
-
-        if (!appId) {
-            return res.status(404).json(
-                {
-                    success: false,
-                    message: "Appointment not found!"
-                }
-            )
-        }
-
-        //3. Provide response 
-        res.json(
-            {
-                success: true,
-                message: "Appointment retrived successfully!",
-                data: appointment
-            }
-        )
-
-    } catch (error) {
-        res.status(500).json(
-            {
-                success: false,
-                message: "Error finding appointment",
-                error: error
-            }
-        )
-
-    }
-}
-
 export const showMyAppointments = async (req: Request, res: Response) => {
     try {
         const userId = req.tokenData.id;
@@ -227,5 +180,52 @@ export const deleteAppointment = async (req: Request, res: Response) => {
             message: "Appointment cannot be deleted!",
             error: error
         })
+    }
+}
+
+export const findAppointmendById = async (req: Request, res: Response) => {
+    try {
+        //1. Find the ID of the appointment
+        const appId = req.body.id;
+        const userID = req.tokenData.id;
+
+        //2. Search app by ID in our database
+        const appointment = await Appointment.findOne(
+            {
+                where: {
+                    user: { id: userID },
+                    id: parseInt(appId)
+                },
+                relations: { service: {} }
+            }
+        )
+
+        if (!appId) {
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: "Appointment not found!"
+                }
+            )
+        }
+
+        //3. Provide response 
+        res.json(
+            {
+                success: true,
+                message: "Appointment retrived successfully!",
+                data: appointment
+            }
+        )
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: "Error finding appointment",
+                error: error
+            }
+        )
+
     }
 }
