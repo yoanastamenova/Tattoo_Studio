@@ -55,7 +55,7 @@ export const createRole = async (req: Request, res: Response) => {
 export const updateRole = async (req: Request, res: Response) => {
     try {
         //1. Get information needed
-        const roleID = req.params.id
+        const roleID = req.body.id
         const body = req.body
 
         //2. Update the info with the info from the body
@@ -66,12 +66,12 @@ export const updateRole = async (req: Request, res: Response) => {
             body
         )
 
-        //2. Respond to user
+        //3. Respond to user
         res.status(200).json(
             {
                 success: true,
                 message: "Role was updated successfully!",
-                data: updateRole
+                data: updatedRole
             }
         )
 
@@ -89,14 +89,12 @@ export const updateRole = async (req: Request, res: Response) => {
 export const deleteRole = async (req: Request, res: Response) => {
     try {
         //1. Get the wanted role ID
-    const roleID = req.params.id
+    const roleID = req.body.id
 
     //2. Find the role
-    const role = await Role.findOne(
+    const role = await Role.findOneBy(
         {
-            where: {
-                id: parseInt(roleID)
-            }
+            id: parseInt(roleID)
         }
     )
 
@@ -114,7 +112,7 @@ export const deleteRole = async (req: Request, res: Response) => {
         {
             success: true,
             message: "Role was deleted successfully!",
-            data: deleteRole
+            data: deletedRole
         }
     )
         
