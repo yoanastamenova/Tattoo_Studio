@@ -76,11 +76,13 @@ Used technologies for the project:
 
 1. Clone the repository from the url
 2. `$ npm install` (to get all the node packages)
-3. Connect the cloned repo with our Database
-4. `$ Execute the migrations`
-5. `$ Execute the seeders`
-6. `$ npm run dev` to run our server
-7. ...
+3. Connect the cloned repo with our Database (if you dont have docker make a mysql container and run it on the wanted port such as:
+` docker run -d --name mysqlc -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root  -v mysql_data:/var/lib/mysql mysql `)
+4. Change variables in .env with the PORT given from Docker
+5. `$ npm run migrations`
+6. `$ npm run db:seed`
+7. `$ npm run db:refresh` to execute everything from the beginning
+8. `$ npm run dev` to run our server
 
 ## Endpoints ⚒
 

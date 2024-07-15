@@ -8,7 +8,8 @@ export const getAllUsers = async (req: Request, res: Response) => {
             {
                 select: {
                     email: true,
-                    created_at: true
+                    created_at: true,
+                    id: true
                 }
             }
         )
@@ -176,7 +177,8 @@ export const changeUserRole = async (req: Request, res: Response) => {
     try {
         //1. Retrive the id for the user which we want to update
         const { userId, newRoleId } = req.body;
-
+        console.log(userId)
+        
         //2. Validate this info (see if our user exxists)
 
         const user = await User.findOne({
@@ -184,7 +186,7 @@ export const changeUserRole = async (req: Request, res: Response) => {
                 id: userId
             }
     })
-
+    console.log(user)
         if(!user){
             return res.status(404).json(
                 {
