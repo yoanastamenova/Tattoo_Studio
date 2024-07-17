@@ -140,7 +140,6 @@ export const getUserByEmail = async (req: Request, res: Response) => {
     try {
         //1. get the needed user ID
         const userId = req.tokenData.id;
-        const userEmail = req.body.email;
 
         //2. Look for this ID in our DB
 
@@ -151,20 +150,10 @@ export const getUserByEmail = async (req: Request, res: Response) => {
                     created_at: true,
                 },
                 where: {
-                    id: userId,
-                    email: userEmail
+                    id: userId
                 }
             }
         )
-
-        if (!userEmail) {
-            return res.status(404).json(
-                {
-                    success: false,
-                    message: "User with this email not found!"
-                }
-            )
-        }
 
         //3. Provide a response
         res.json(
@@ -190,7 +179,6 @@ export const changeUserRole = async (req: Request, res: Response) => {
     try {
         //1. Retrive the id for the user which we want to update
         const { userId, newRoleId } = req.body;
-        console.log(userId)
         
         //2. Validate this info (see if our user exxists)
 
