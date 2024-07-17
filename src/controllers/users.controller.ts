@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { User } from "../database/models/User";
+import bcrypt from 'bcrypt';
 
 export const getAllUsers = async (req: Request, res: Response) => {
     try {
@@ -74,53 +75,65 @@ export const getUserProfile = async (req: Request, res: Response) => {
 
 export const modifyUserProfile = async (req: Request, res: Response) => {
     try {
-        //1. Get the needed user ID
+        // 1. Get the needed user ID
         const userId = req.tokenData.id;
-        const body = req.body;
+        const { email, first_name, last_name, password } = req.body;
 
-        //2. Validate if this user exists
-
-        const user = User.findOne(
-            {
-                where: {
-                    id: userId
-                }
+        let passwordHashed;
+        if (password) {
+                if (password.length < 8 || password.length > 12) {
+                return res.status(400).json({
+                    success: false,
+                    message: "The entered password does not respond to the requirements!"
+                });
             }
-        )
+            passwordHashed = bcrypt.hashSync(password, 12);
+        }
+
+        // 2. Validate if this user exists
+        const user = await User.findOne({
+            where: {
+                id: userId
+            }
+        });
 
         if (!user) {
             return res.status(404).json({
                 success: false,
                 message: "User not found!"
-            })
+            });
         }
 
         // 3. Insert new data that will be changed and saved into BD
-        const updateBody = await User.update(
+        const updateFields: any = {
+            email: email, 
+            first_name: first_name, 
+            last_name: last_name,
+            password: passwordHashed
+        };
+
+        await User.update(
             {
                 id: userId
             },
-            body
-        )
+            updateFields
+    );
 
-        // 4. Confirmation to web page 
-
+        // 4. Confirmation to web page
         return res.status(200).json({
             success: true,
             message: "User information was updated successfully!",
-            data: updateBody
-        })
+            data: updateFields
+        });
 
     } catch (error) {
         res.status(500).json({
             success: false,
             message: "User cannot be updated!",
             error: error
-        })
+        });
     }
 }
-
-
 //////// EXTRA CRUD
 
 export const getUserByEmail = async (req: Request, res: Response) => {
@@ -232,11 +245,11 @@ export const deleteUserById = async (req: Request, res: Response) => {
     try {
         const userID = req.body.id
 
-        const service = await User.findOneBy({
+        const user = await User.findOneBy({
             id: parseInt(userID)
         })
 
-        if (!service) {
+        if (!user) {
             return res.status(404).json({
                 success: false,
                 message: "User not found! Check ID!"
