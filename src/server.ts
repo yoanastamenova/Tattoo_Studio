@@ -8,8 +8,11 @@ import { auth } from './middlewares/auth';
 import { isAdmin } from './middlewares/isAdmin';
 import { createAppointment, deleteAppointment, findAppointmendById, showMyAppointments, updateAppointment } from './controllers/appointments.controller';
 import { createRole, deleteRole, getRoles, updateRole } from './controllers/roles.controller';
+import cors from 'cors';
 
 const app = express();
+app.use(cors());
+
 app.use(express.json())
 
 const PORT = process.env.PORT || 4000;
@@ -24,8 +27,6 @@ AppDataSource.initialize()
     .catch(error => {
         console.log(error)
     })
-
-
 
 // AUTHENTICATION CRUD
 
