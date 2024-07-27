@@ -1,41 +1,32 @@
-// import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
-// import { Role } from "./Role"
-// import { User } from "./User"
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm"
+import { Appointment } from "./Appointment";
 
-// @Entity("artists")
-// export class Artist extends BaseEntity {
-//     @PrimaryGeneratedColumn()
-//     id!: number
+@Entity("artists")
+export class Artist extends BaseEntity {
+    @PrimaryGeneratedColumn()
+    id!: number;
 
-//     @Column({ name: 'email' })
-//     email!: string
+    @Column({ name: 'first_name' })
+    first_name!: string;
 
-//     @Column({ name: 'password_hash' })
-//     password_hash!: string
+    @Column({ name: "last_name" })
+    last_name!: string;
 
-//     @Column({ name: 'role_id' })
-//     role_id!: number
+    @CreateDateColumn({ name: "created_at" })
+    created_at!: Date;
 
-//     @Column({ name: "created_at" })
-//     created_at!: Date
+    @UpdateDateColumn({ name: "updated_at" })
+    updated_at!: Date;
 
-//     @Column({ name: "updated_at" })
-//     updated_at!: Date
+    @Column({ name: 'specialization' })
+    specialization!: string;
 
-//     @Column({ name: 'specialization' })
-//     specialization!: string
+    @Column({ name: 'bio', type: "text" })
+    bio!: string;
 
-//     @Column({ name: 'bio' })
-//     bio!: string
-
-//     @Column({ name: 'style' })
-//     style!: string
-
-//     @ManyToOne(() => Role, (role) => role.artists)
-//     @JoinColumn({ name: "role_id" })
-//     role!: Role;
-
-//     // @ManyToOne(() => User, user => user.artistsEmail)
-//     // @JoinColumn({ name: "email" })
-//     // userEmail!: User;
-// }
+    @Column({ name: 'style' })
+    style!: string;
+    
+    @OneToMany(() => Appointment, appointment => appointment.artist)
+    appointments!: Appointment[];
+}

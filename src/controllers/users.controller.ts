@@ -45,8 +45,11 @@ export const getUserProfile = async (req: Request, res: Response) => {
         const user = await User.findOne(
             {
                 select: {
+                    first_name: true,
+                    last_name: true,
                     email: true,
                     created_at: true,
+                    updated_at: true
                 },
                 where: {
                     id: userId
@@ -75,65 +78,38 @@ export const getUserProfile = async (req: Request, res: Response) => {
 
 export const modifyUserProfile = async (req: Request, res: Response) => {
     try {
-        // 1. Get the needed user ID
-        const userId = req.tokenData.id;
-        const { email, first_name, last_name, password } = req.body;
-
-        let passwordHashed;
-        if (password) {
-                if (password.length < 8 || password.length > 12) {
-                return res.status(400).json({
-                    success: false,
-                    message: "The entered password does not respond to the requirements!"
-                });
-            }
-            passwordHashed = bcrypt.hashSync(password, 12);
+      // 1. Get the user ID from the token and the info we want to update from the body
+      console.log(req.tokenData.id, req.body)
+      // 2. Save it in the database
+      const user = await User.update(
+        {
+          id: req.tokenData.id
+        },
+        {
+          first_name: req.body.first_name,
+          last_name: req.body.last_name,
+          email: req.body.email
         }
-
-        // 2. Validate if this user exists
-        const user = await User.findOne({
-            where: {
-                id: userId
-            }
-        });
-
-        if (!user) {
-            return res.status(404).json({
-                success: false,
-                message: "User not found!"
-            });
+      )
+  
+      res.json(
+        {
+          success: true,
+          message: "Profile updated",
+          data: user
         }
-
-        // 3. Insert new data that will be changed and saved into BD
-        const updateFields: any = {
-            email: email, 
-            first_name: first_name, 
-            last_name: last_name,
-            password: passwordHashed
-        };
-
-        await User.update(
-            {
-                id: userId
-            },
-            updateFields
-    );
-
-        // 4. Confirmation to web page
-        return res.status(200).json({
-            success: true,
-            message: "User information was updated successfully!",
-            data: updateFields
-        });
-
+      )
+  
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: "User cannot be updated!",
-            error: error
-        });
+      res.status(500).json(
+        {
+          success: false,
+          message: "Error updating profile",
+          error: error
+        }
+      )
     }
-}
+  }
 //////// EXTRA CRUD
 
 export const getUserByEmail = async (req: Request, res: Response) => {

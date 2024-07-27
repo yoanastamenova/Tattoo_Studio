@@ -38,6 +38,13 @@ export const register = async (req: Request, res: Response) => {
         //3. Work with the obtained user information - in our case encrypt the password
         const passwordCrypted = bcrypt.hashSync(password_hash, 10)
 
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid email format."
+            });
+        }
 
         //4. Save the info in out DataBase
 
@@ -123,7 +130,7 @@ export const userLogIn = async (req: Request, res: Response) => {
                 expiresIn: "2h"
             }
         )
-        
+
 
         res.status(200).json(
             {
