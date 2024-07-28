@@ -5,7 +5,7 @@ export const createAppointment = async (req: Request, res: Response) => {
     try {
         //1. Get the needed information
         const userID = req.tokenData.id;
-        const {serviceID, appDate, artistID} = req.body
+        const { appDate, serviceID, artistID} = req.body
 
         //2. Check the obtained information
         if (!appDate || !serviceID || !artistID) {
@@ -20,8 +20,8 @@ export const createAppointment = async (req: Request, res: Response) => {
         //3. Save info in our DataBase
         const newAppointment = await Appointment.create(
             {
-                appointment_date: new Date(appDate),
                 user_id: userID,
+                appointment_date: new Date(appDate),
                 service_id: serviceID,
                 artist_id: artistID
             }
@@ -120,13 +120,20 @@ export const showMyAppointments = async (req: Request, res: Response) => {
                         id: true,
                         service_name: true
                     },
+                    artist: {
+                        id: true,
+                        first_name: true,
+                        last_name: true,
+                        specialization: true,
+                        style: true
+                    }
                 },
                 where:
                 {
                     user_id: userId
                 },
 
-                relations: { user: {}, service: {} }
+                relations: { user: {}, service: {}, artist: {}}
             }
         );
 
@@ -151,7 +158,7 @@ export const showMyAppointments = async (req: Request, res: Response) => {
 
 export const deleteAppointment = async (req: Request, res: Response) => {
     try {
-        const appID = req.body.id
+        const appID = req.params.id
 
         const appointment = await Appointment.findOneBy({
             id: parseInt(appID)

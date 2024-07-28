@@ -207,7 +207,7 @@ export const changeUserRole = async (req: Request, res: Response) => {
 
 export const deleteUserById = async (req: Request, res: Response) => {
     try {
-        const userID = req.body.id
+        const userID = req.params.id
 
         const user = await User.findOneBy({
             id: parseInt(userID)

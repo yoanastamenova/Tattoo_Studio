@@ -9,6 +9,7 @@ import { isAdmin } from './middlewares/isAdmin';
 import { createAppointment, deleteAppointment, findAppointmendById, showMyAppointments, updateAppointment } from './controllers/appointments.controller';
 import { createRole, deleteRole, getRoles, updateRole } from './controllers/roles.controller';
 import cors from 'cors';
+import { getAllArtists } from './controllers/artists.controller';
 
 const app = express();
 app.use(cors());
@@ -49,7 +50,7 @@ app.put('/api/users/:id/role', auth, isAdmin, changeUserRole)      // to change 
 app.post('/api/appointments/create', auth, createAppointment)          //Create new appointment           - pass to Thunder > auth > your token hash
 app.put('/api/appointments/change', auth, updateAppointment)          //Update an appointment           - pass to Thunder > auth > your token hash
 app.get('/api/appointments/scheduled', auth, showMyAppointments)     //Show all my appointments        - pass to Thunder > auth > your token hash
-app.delete('/api/appointments/delete', auth, deleteAppointment)      //to delete selected appoitnment
+app.delete('/api/appointments/delete/:id', auth, deleteAppointment)      //to delete selected appoitnment
 app.get('/api/appointments/:id', auth, findAppointmendById)         //Show an appointment by ID                - pass to Thunder > auth > your token hash
 
 
@@ -59,6 +60,10 @@ app.get('/api/services', getAllServices)                            // to see al
 app.post('/api/services', auth, isAdmin, createService)             //to create a service
 app.put('/api/services/:id', auth, isAdmin, updateSerivce)          // to update a service by its ID
 app.delete('/api/services/:id', auth, isAdmin, deleteService)        // to delete a service by its ID
+
+//ARTISTS CRUD
+
+app.get('/api/artists', getAllArtists)
 
 
 // ROLES CRUD
